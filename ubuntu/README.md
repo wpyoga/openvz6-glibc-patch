@@ -10,9 +10,15 @@ The first build is only there to facilitate the upgrade to the next release. Aft
 we need to build the same glibc again with the newer toolchain in order to get all the new features.
 
 
-## Upgrade 16.04 Xenial to 18.04 Bionic
+## glibc versions that come with each Ubuntu LTS version
 
-Ubuntu 16.04 Xenial comes with glibc 2.23, while Ubuntu 18.04 Bionic comes with glibc 2.27 .
+- Ubuntu 16.04 LTS Xenial: glibc 2.23
+- Ubuntu 18.04 LTS Bionic: glibc 2.27
+- Ubuntu 20.04 LTS Focal: glibc 2.31
+- Ubuntu 22.04 LTS Jammy: glibc 2.35
+
+
+## Upgrade 16.04 Xenial to 18.04 Bionic
 
 1. Download, patch, build, and install glibc 2.27
 1. Upgrade the system to 18.04 Bionic
