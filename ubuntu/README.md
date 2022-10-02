@@ -18,6 +18,11 @@ we need to build the same glibc again with the newer toolchain in order to get a
 - Ubuntu 22.04 LTS Jammy: glibc 2.35
 
 
+## LTS version upgrades
+
+Install update-manager-core and use do-release-upgrade.
+
+
 ## Upgrade 16.04 Xenial to 18.04 Bionic
 
 1. Download, patch, build, and install glibc 2.27
