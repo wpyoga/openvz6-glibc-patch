@@ -1,8 +1,5 @@
 #!/bin/sh
 
-TEMP1=$(mktemp)
-TEMP2=$(mktemp)
-
 # glibc (2.31-0ubuntu9.2) focal; urgency=medium
 head -n1 glibc-2.31/debian/changelog | grep -wq focal
 if [ $? -ne 0 ]; then
@@ -12,8 +9,11 @@ fi
 
 echo Patching glibc-2.31/debian/changelog
 
+TEMP1=$(mktemp)
+TEMP2=$(mktemp)
+
 cat >$TEMP1 <<EOF
-glibc (999:2.31-0ubuntu9.2bionic1) UNRELEASED; urgency=medium
+glibc (2.31-openvz6+ubuntu18.04+0ubuntu9.2) UNRELEASED; urgency=medium
 
   * Build on Bionic on OpenVZ 6
 

@@ -50,9 +50,11 @@ $ (cd glibc-2.27/sysdeps/unix/sysv/linux/x86_64/x32; autoconf -I ../../../../../
 $ sh glibc-2.27-patch-changelog-xenial.sh
 ```
 
-The resulting binary packages will have the debian version prepended by "openvz6+xenial1".
-This way, as long as the upstream version does not change (we stay on the same LTS release),
-our glibc packages will not be mistakenly overwritten by the official packages.
+The resulting binary packages will have the debian version prepended by "openvz6+ubuntu16.04+",
+indicating that this build is specifically for Ubuntu 16.04 on OpenVZ6.
+
+As long as the upstream version does not change (we stay on the same LTS release),
+our custom glibc packages will not be mistakenly overwritten by the official packages.
 
 During upgrade to Ubuntu 18.04 LTS Bionic using do-release-upgrade, our custom repository
 will be disabled. However, our custom versioning ensures that our glibc packages will not

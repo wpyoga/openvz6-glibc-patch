@@ -54,9 +54,13 @@ $ (cd glibc-2.27/sysdeps/unix/sysv/linux/x86_64/x32; autoconf -I ../../../../../
 $ sh glibc-2.27-patch-changelog-bionic.sh
 ```
 
-The resulting binary packages will have its debian-revision prepended by "openvz6+bionic1+".
-This way, as long as the upstream version does not change (we stay on the same LTS release),
-our glibc packages will not be mistakenly overwritten by the official packages.
+The resulting binary packages will have the debian version prepended by "openvz6+ubuntu18.04+",
+indicating that this build is specifically for Ubuntu 18.04 on OpenVZ6. This also ensures
+that the interim glibc packages installed prior to upgrading to bionic will be upgraded
+after the system upgrade.
+
+As long as the upstream version does not change (we stay on the same LTS release),
+our custom glibc packages will not be mistakenly overwritten by the official packages.
 
 Reference:
 - https://manpages.ubuntu.com/manpages/bionic/man7/deb-version.7.html

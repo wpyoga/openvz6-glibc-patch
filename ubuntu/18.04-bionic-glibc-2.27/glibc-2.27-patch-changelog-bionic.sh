@@ -3,7 +3,7 @@
 # glibc (2.27-3ubuntu1.6) bionic; urgency=medium
 head -n1 glibc-2.27/debian/changelog | grep -wq bionic
 if [ $? -ne 0 ]; then
-  echo Changelog already prepended.
+  echo Changelog already patched.
   exit 0
 fi
 
@@ -13,7 +13,7 @@ TEMP1=$(mktemp)
 TEMP2=$(mktemp)
 
 cat >$TEMP1 <<EOF
-glibc (2.27-openvz6+bionic1+3ubuntu1.6) UNRELEASED; urgency=medium
+glibc (2.27-openvz6+ubuntu18.04+3ubuntu1.6) UNRELEASED; urgency=medium
 
   * Build on Bionic on OpenVZ 6
 

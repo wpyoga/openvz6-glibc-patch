@@ -52,9 +52,11 @@ $ (cd glibc-2.31/sysdeps/unix/sysv/linux/x86_64/x32; autoconf -I ../../../../../
 $ sh glibc-2.31-patch-changelog-bionic.sh
 ```
 
-The resulting binary packages will have its debian-revision prepended by "openvz6+bionic1+".
-This way, as long as the upstream version does not change (we stay on the same LTS release),
-our glibc packages will not be mistakenly overwritten by the official packages.
+The resulting binary packages will have the debian version prepended by "openvz6+ubuntu18.04+",
+indicating that this build is specifically for Ubuntu 18.04 on OpenVZ6.
+
+As long as the upstream version does not change (we stay on the same LTS release),
+our custom glibc packages will not be mistakenly overwritten by the official packages.
 
 During upgrade to Ubuntu 20.04 LTS Focal using do-release-upgrade, our custom repository
 will be disabled. However, our custom versioning ensures that our glibc packages will not
@@ -85,7 +87,7 @@ $ apt-ftparchive release . >Release
 
 /etc/apt/sources.list.d/bionic-glibc-2.31.list
 ```
-deb [trusted=yes] file:/var/lib/libc6-openvz6 bionic-glibc-2.31/
+deb [trusted=yes] file:/var/lib/libc6-openvz6/bionic-glibc-2.31 ./
 ```
 
 ```
