@@ -1,0 +1,47 @@
+--- glibc-2.31.orig/resolv/Makefile
++++ glibc-2.31/resolv/Makefile
+@@ -58,7 +58,7 @@
+   tst-resolv-network \
+   tst-resolv-nondecimal \
+   tst-resolv-res_init-multi \
+-  tst-resolv-search \
++  \
+   tst-resolv-trailing \
+ 
+ # These tests need libdl.
+--- glibc-2.31.orig/sysdeps/unix/sysv/linux/Makefile
++++ glibc-2.31/sysdeps/unix/sysv/linux/Makefile
+@@ -95,7 +95,7 @@
+ 
+ tests += tst-clone tst-clone2 tst-clone3 tst-fanotify tst-personality \
+ 	 tst-quota tst-sync_file_range tst-sysconf-iov_max tst-ttyname \
+-	 test-errno-linux tst-memfd_create tst-mlock2 tst-pkey \
++	 tst-memfd_create tst-mlock2 tst-pkey \
+ 	 tst-rlimit-infinity tst-ofdlocks tst-gettid tst-gettid-kill \
+ 	 tst-tgkill
+ tests-internal += tst-ofdlocks-compat tst-sigcontext-get_pc
+@@ -231,10 +231,10 @@
+ 
+ sysdep_routines += sched_getcpu oldglob getcpu
+ 
+-tests += tst-affinity tst-affinity-pid
+ 
+-tests-static := tst-affinity-static
+-tests += $(tests-static)
++
++
++
+ 
+ CFLAGS-fork.c = $(libio-mtsafe)
+ CFLAGS-getpid.o = -fomit-frame-pointer
+@@ -299,7 +299,7 @@
+ 
+ ifeq ($(subdir),nptl)
+ tests += tst-align-clone tst-getpid1 \
+-	tst-thread-affinity-pthread tst-thread-affinity-pthread2 \
+-	tst-thread-affinity-sched
++
++
+ tests-internal += tst-setgetname
+ endif
+
