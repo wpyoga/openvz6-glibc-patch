@@ -1,0 +1,46 @@
+Index: glibc-2.31/debian/rules
+===================================================================
+--- glibc-2.31.orig/debian/rules
++++ glibc-2.31/debian/rules
+@@ -95,7 +95,7 @@
+ BASE_CC = gcc
+ BASE_CXX = g++
+ BASE_MIG = mig
+-DEB_GCC_VERSION ?= -9
++DEB_GCC_VERSION ?= -7
+ 
+ RUN_TESTSUITE = yes
+ TIMEOUTFACTOR = 25
+Index: glibc-2.31/debian/sysdeps/amd64.mk
+===================================================================
+--- glibc-2.31.orig/debian/sysdeps/amd64.mk
++++ glibc-2.31/debian/sysdeps/amd64.mk
+@@ -1,5 +1,5 @@
+ # configuration options for all flavours
+-extra_config_options = --enable-multi-arch --enable-static-pie --enable-cet
++extra_config_options = --enable-multi-arch --enable-static-pie
+ 
+ # main library
+ libc_mvec = yes
+Index: glibc-2.31/debian/sysdeps/i386.mk
+===================================================================
+--- glibc-2.31.orig/debian/sysdeps/i386.mk
++++ glibc-2.31/debian/sysdeps/i386.mk
+@@ -1,5 +1,5 @@
+ # configuration options for all flavours
+-extra_config_options = --enable-multi-arch --enable-static-pie --enable-cet
++extra_config_options = --enable-multi-arch --enable-static-pie
+ libc_extra_cflags = -mno-tls-direct-seg-refs
+ 
+ # multilib flavours
+Index: glibc-2.31/debian/sysdeps/x32.mk
+===================================================================
+--- glibc-2.31.orig/debian/sysdeps/x32.mk
++++ glibc-2.31/debian/sysdeps/x32.mk
+@@ -1,5 +1,5 @@
+ # configuration options for all flavours
+-extra_config_options = --enable-multi-arch --enable-static-pie --enable-cet
++extra_config_options = --enable-multi-arch --enable-static-pie
+ 
+ # main library
+ libc_mvec = yes
