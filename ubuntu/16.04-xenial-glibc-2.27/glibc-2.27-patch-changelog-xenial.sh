@@ -13,7 +13,7 @@ TEMP1=$(mktemp)
 TEMP2=$(mktemp)
 
 cat >$TEMP1 <<EOF
-glibc (999:2.27-3ubuntu1.6xenial1) UNRELEASED; urgency=medium
+glibc (2.27-openvz6+xenial1+3ubuntu1.6) UNRELEASED; urgency=medium
 
   * Build on Xenial on OpenVZ 6
 
