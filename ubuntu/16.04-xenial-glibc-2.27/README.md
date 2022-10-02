@@ -45,17 +45,20 @@ $ patch -p0 < glibc-2.27-rlimit.diff
 $ patch -p0 < glibc-2.27-missing-files.diff
 $ patch -p0 < glibc-2.27-gcc-5.diff
 $ patch -p0 < glibc-2.27-skip-tests.diff
-$ sh glibc-2.27-patch-changelog.sh
+$ sh glibc-2.27-patch-changelog-xenial.sh
 ```
 
 The resulting binary packages will have the epoch version of 999. This makes apt
 think that the packages are newer than any package updated on official Ubuntu
 repositories, so they won't be mistakenly replaced by official Ubuntu packages.
 
+You can upgrade to Ubuntu 18.04 Bionic and glibc packages will not be replaced.
+
+
 ## Build the packages
 
 ```console
-( cd glibc-2.27 && dpkg-buildpackage -rfakeroot -b -d -Jauto )
+( cd glibc-2.27 && dpkg-buildpackage -rfakeroot -b -d )
 ```
 
 ## Stage the packages
