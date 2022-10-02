@@ -41,10 +41,9 @@ $ apt source --download-only glibc/focal
 ## Extract and patch
 
 ```
-$ dpkg-source -x glibc_2.31-0ubuntu9.2.dsc
+$ dpkg-source -x glibc_2.31-0ubuntu9.9.dsc
 $ patch -p0 < glibc-2.31-kernel-2.6.32.diff
 $ patch -p0 < glibc-2.31-rlimit.diff
-$ patch -p0 < glibc-2.31-missing-files.diff
 $ patch -p0 < glibc-2.31-gcc-7.diff
 $ patch -p0 < glibc-2.31-skip-tests.diff
 $ (cd glibc-2.31/sysdeps/unix/sysv/linux; autoconf -I ../../../.. -o configure configure.ac)
