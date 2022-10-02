@@ -17,9 +17,9 @@ deb http://archive.ubuntu.com/ubuntu focal-backports main restricted universe mu
 
 /etc/apt/sources.list.d/focal-src.list
 ```
-deb-src http://archive.ubuntu.com/ubuntu focal main restricted universe
-deb-src http://archive.ubuntu.com/ubuntu focal-updates main restricted universe
-deb-src http://archive.ubuntu.com/ubuntu focal-security main restricted universe
+deb-src http://archive.ubuntu.com/ubuntu focal main
+deb-src http://archive.ubuntu.com/ubuntu focal-updates main
+deb-src http://archive.ubuntu.com/ubuntu focal-security main
 ```
 
 ```console

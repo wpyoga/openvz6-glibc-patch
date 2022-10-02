@@ -15,9 +15,9 @@ deb http://archive.ubuntu.com/ubuntu xenial-backports main restricted universe m
 
 /etc/apt/sources.list.d/bionic-src.list
 ```
-deb-src http://archive.ubuntu.com/ubuntu bionic main restricted universe
-deb-src http://archive.ubuntu.com/ubuntu bionic-updates main restricted universe
-deb-src http://archive.ubuntu.com/ubuntu bionic-security main restricted universe
+deb-src http://archive.ubuntu.com/ubuntu bionic main
+deb-src http://archive.ubuntu.com/ubuntu bionic-updates main
+deb-src http://archive.ubuntu.com/ubuntu bionic-security main
 ```
 
 ```console
