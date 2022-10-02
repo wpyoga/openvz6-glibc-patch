@@ -83,7 +83,7 @@ $ apt-ftparchive release . >Release
 
 /etc/apt/sources.list.d/xenial-glibc-2.27.list
 ```
-deb [trusted=yes] file:/var/lib/libc6-openvz6 xenial-glibc-2.27/
+deb [trusted=yes] file:/var/lib/libc6-openvz6/xenial-glibc-2.27 ./
 ```
 
 ```
