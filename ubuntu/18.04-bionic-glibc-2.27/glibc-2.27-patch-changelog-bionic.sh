@@ -13,7 +13,7 @@ fi
 cat >$TEMP1 <<EOF
 glibc (999:2.27-3ubuntu1.6bionic1) UNRELEASED; urgency=medium
 
-  * Build on Xenial on OpenVZ 6
+  * Build on Bionic on OpenVZ 6
 
  -- William Poetra Yoga <william.poetra@gmail.com>  Sat, 2 Oct 2022 14:14:14 +0700
 
