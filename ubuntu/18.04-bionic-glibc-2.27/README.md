@@ -54,9 +54,13 @@ $ (cd glibc-2.27/sysdeps/unix/sysv/linux/x86_64/x32; autoconf -I ../../../../../
 $ sh glibc-2.27-patch-changelog-bionic.sh
 ```
 
-The resulting binary packages will have the epoch version of 999. This makes apt
-think that the packages are newer than any package updated on official Ubuntu
-repositories, so they won't be mistakenly replaced by official Ubuntu packages.
+The resulting binary packages will have its debian-revision prepended by "openvz6+bionic1+".
+This way, as long as the upstream version does not change (we stay on the same LTS release),
+our glibc packages will not be mistakenly overwritten by the official packages.
+
+Reference:
+- https://manpages.ubuntu.com/manpages/bionic/man7/deb-version.7.html
+
 
 ## Build the packages
 
