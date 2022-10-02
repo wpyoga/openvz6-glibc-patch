@@ -45,9 +45,9 @@ $ patch -p0 < glibc-2.27-rlimit.diff
 $ patch -p0 < glibc-2.27-missing-files.diff
 $ patch -p0 < glibc-2.27-gcc-5.diff
 $ patch -p0 < glibc-2.27-skip-tests.diff
-$ sh glibc-2.27-patch-changelog-xenial.sh
 $ (cd glibc-2.27/sysdeps/unix/sysv/linux; autoconf -I ../../../.. -o configure configure.ac)
 $ (cd glibc-2.27/sysdeps/unix/sysv/linux/x86_64/x32; autoconf -I ../../../../../.. -o configure configure.ac)
+$ sh glibc-2.27-patch-changelog-xenial.sh
 ```
 
 The resulting binary packages will have the epoch version of 999. This makes apt
@@ -60,7 +60,7 @@ You can upgrade to Ubuntu 18.04 Bionic and glibc packages will not be replaced.
 ## Build the packages
 
 ```console
-( cd glibc-2.27 && dpkg-buildpackage -rfakeroot -b -d )
+( cd glibc-2.27 && dpkg-buildpackage -rfakeroot -b -d -Jauto )
 ```
 
 ## Stage the packages
@@ -68,7 +68,7 @@ You can upgrade to Ubuntu 18.04 Bionic and glibc packages will not be replaced.
 ```
 $ sudo mkdir -p /var/lib/libc6-openvz6/xenial-glibc-2.27
 $ sudo chown myuser: /var/lib/libc6-openvz6/xenial-glibc-2.27
-$ mv -i *.deb *.udeb *.changes /var/lib/libc6-openvz6/xenial-glibc-2.27
+$ mv -i *.deb *.udeb /var/lib/libc6-openvz6/xenial-glibc-2.27
 $ cd /var/lib/libc6-openvz6/xenial-glibc-2.27
 $ apt-ftparchive packages . >Packages
 $ apt-ftparchive release . >Release
