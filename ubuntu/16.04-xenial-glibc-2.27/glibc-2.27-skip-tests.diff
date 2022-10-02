@@ -1,0 +1,41 @@
+--- glibc-2.27.orig/resolv/Makefile
++++ glibc-2.27/resolv/Makefile
+@@ -55,7 +55,7 @@
+   tst-resolv-edns \
+   tst-resolv-network \
+   tst-resolv-res_init-multi \
+-  tst-resolv-search \
++  \
+ 
+ # These tests need libdl.
+ ifeq (yes,$(build-shared))
+--- glibc-2.27.orig/sysdeps/unix/sysv/linux/Makefile
++++ glibc-2.27/sysdeps/unix/sysv/linux/Makefile
+@@ -44,7 +44,7 @@
+ 
+ tests += tst-clone tst-clone2 tst-clone3 tst-fanotify tst-personality \
+ 	 tst-quota tst-sync_file_range tst-sysconf-iov_max tst-ttyname \
+-	 test-errno-linux tst-memfd_create tst-mlock2 tst-pkey \
++	 tst-memfd_create tst-mlock2 tst-pkey \
+ 	 tst-rlimit-infinity
+ 
+ # Generate the list of SYS_* macros for the system calls (__NR_*
+@@ -139,7 +139,7 @@
+ 
+ sysdep_routines += sched_getcpu oldglob
+ 
+-tests += tst-affinity tst-affinity-pid
++
+ 
+ CFLAGS-fork.c = $(libio-mtsafe)
+ CFLAGS-getpid.o = -fomit-frame-pointer
+@@ -196,7 +196,7 @@
+ 
+ ifeq ($(subdir),nptl)
+ tests += tst-align-clone tst-getpid1 \
+-	tst-thread-affinity-pthread tst-thread-affinity-pthread2 \
+-	tst-thread-affinity-sched
++
++
+ tests-internal += tst-setgetname
+ endif

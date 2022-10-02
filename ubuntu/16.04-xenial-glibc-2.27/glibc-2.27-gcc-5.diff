@@ -1,0 +1,64 @@
+Index: glibc-2.27/debian/rules
+===================================================================
+--- glibc-2.27.orig/debian/rules
++++ glibc-2.27/debian/rules
+@@ -96,7 +96,7 @@ mvec = no
+ BASE_CC = gcc
+ BASE_CXX = g++
+ BASE_MIG = mig
+-DEB_GCC_VERSION ?= -7
++DEB_GCC_VERSION ?= -5
+ 
+ RUN_TESTSUITE = yes
+ TIMEOUTFACTOR = 25
+Index: glibc-2.27/debian/sysdeps/amd64.mk
+===================================================================
+--- glibc-2.27.orig/debian/sysdeps/amd64.mk
++++ glibc-2.27/debian/sysdeps/amd64.mk
+@@ -1,5 +1,5 @@
+ # configuration options for all flavours
+-extra_config_options = --enable-multi-arch --enable-static-pie
++extra_config_options = --enable-multi-arch
+ 
+ # main library
+ libc_mvec = yes
+Index: glibc-2.27/debian/sysdeps/i386.mk
+===================================================================
+--- glibc-2.27.orig/debian/sysdeps/i386.mk
++++ glibc-2.27/debian/sysdeps/i386.mk
+@@ -1,5 +1,5 @@
+ # configuration options for all flavours
+-extra_config_options = --enable-multi-arch --enable-static-pie
++extra_config_options = --enable-multi-arch
+ libc_extra_cflags = -mno-tls-direct-seg-refs
+ 
+ # multilib flavours
+Index: glibc-2.27/debian/sysdeps/x32.mk
+===================================================================
+--- glibc-2.27.orig/debian/sysdeps/x32.mk
++++ glibc-2.27/debian/sysdeps/x32.mk
+@@ -1,5 +1,5 @@
+ # configuration options for all flavours
+-extra_config_options = --enable-multi-arch --enable-static-pie
++extra_config_options = --enable-multi-arch
+ 
+ # main library
+ libc_mvec = yes
+Index: glibc-2.27/malloc/hooks.c
+===================================================================
+--- glibc-2.27.orig/malloc/hooks.c
++++ glibc-2.27/malloc/hooks.c
+@@ -346,10 +346,10 @@ realloc_check (void *oldmem, size_t byte
+     }
+ 
+   DIAG_PUSH_NEEDS_COMMENT;
+-#if __GNUC_PREREQ (7, 0)
+-  /* GCC 7 warns about magic_p may be used uninitialized.  But we never
++#if __GNUC_PREREQ (5, 0)
++  /* GCC 5 warns about magic_p may be used uninitialized.  But we never
+      reach here if magic_p is uninitialized.  */
+-  DIAG_IGNORE_NEEDS_COMMENT (7, "-Wmaybe-uninitialized");
++  DIAG_IGNORE_NEEDS_COMMENT (5, "-Wmaybe-uninitialized");
+ #endif
+   /* mem2chunk_check changed the magic byte in the old chunk.
+      If newmem is NULL, then the old chunk will still be used though,
