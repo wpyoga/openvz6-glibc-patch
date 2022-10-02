@@ -77,7 +77,7 @@ Reference:
 ```
 $ sudo mkdir -p /var/lib/libc6-openvz6/bionic-glibc-2.27
 $ sudo chown myuser: /var/lib/libc6-openvz6/bionic-glibc-2.27
-$ mv -i *.deb *.udeb *.changes /var/lib/libc6-openvz6/bionic-glibc-2.27
+$ mv -i *.deb *.udeb /var/lib/libc6-openvz6/bionic-glibc-2.27
 $ cd /var/lib/libc6-openvz6/bionic-glibc-2.27
 $ apt-ftparchive packages . >Packages
 $ apt-ftparchive release . >Release

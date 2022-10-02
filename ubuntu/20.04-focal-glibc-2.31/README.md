@@ -74,7 +74,7 @@ Reference:
 ```
 $ sudo mkdir -p /var/lib/libc6-openvz6/focal-glibc-2.31
 $ sudo chown myuser: /var/lib/libc6-openvz6/focal-glibc-2.31
-$ mv -i *.deb *.udeb *.changes /var/lib/libc6-openvz6/focal-glibc-2.31
+$ mv -i *.deb *.udeb /var/lib/libc6-openvz6/focal-glibc-2.31
 $ cd /var/lib/libc6-openvz6/focal-glibc-2.31
 $ apt-ftparchive packages . >Packages
 $ apt-ftparchive release . >Release
