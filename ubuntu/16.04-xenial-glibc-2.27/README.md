@@ -50,11 +50,16 @@ $ (cd glibc-2.27/sysdeps/unix/sysv/linux/x86_64/x32; autoconf -I ../../../../../
 $ sh glibc-2.27-patch-changelog-xenial.sh
 ```
 
-The resulting binary packages will have the epoch version of 999. This makes apt
-think that the packages are newer than any package updated on official Ubuntu
-repositories, so they won't be mistakenly replaced by official Ubuntu packages.
+The resulting binary packages will have the debian version prepended by "openvz6+xenial1".
+This way, as long as the upstream version does not change (we stay on the same LTS release),
+our glibc packages will not be mistakenly overwritten by the official packages.
 
-You can upgrade to Ubuntu 18.04 Bionic and glibc packages will not be replaced.
+During upgrade to Ubuntu 18.04 LTS Bionic using do-release-upgrade, our custom repository
+will be disabled. However, our custom versioning ensures that our glibc packages will not
+be overwritten by packages from bionic.
+
+Reference:
+- https://manpages.ubuntu.com/manpages/xenial/man5/deb-version.5.html
 
 
 ## Build the packages
