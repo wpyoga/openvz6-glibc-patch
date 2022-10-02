@@ -32,7 +32,7 @@ $ sudo apt update
 ## Install debian build tools and glibc build dependencies
 
 ```console
-$ sudo apt install build-essential devscripts debhelper/bionic-backports bison rdfind symlinks systemtap-sdt-dev libselinux1-dev gcc-multilib g++-multilib libgd-dev libaudit-dev libcap-dev
+$ sudo apt install build-essential devscripts debhelper bison rdfind symlinks systemtap-sdt-dev libselinux1-dev gcc-multilib g++-multilib libgd-dev libaudit-dev libcap-dev
 ```
 
 ## Download glibc bionic sources
