@@ -1,0 +1,34 @@
+--- glibc-2.35.orig/resolv/Makefile
++++ glibc-2.35/resolv/Makefile
+@@ -94,7 +94,7 @@
+   tst-resolv-network \
+   tst-resolv-nondecimal \
+   tst-resolv-res_init-multi \
+-  tst-resolv-search \
++  \
+   tst-resolv-trailing \
+ 
+ # This test calls __res_context_send directly, which is not exported
+--- glibc-2.35.orig/sysdeps/unix/sysv/linux/Makefile
++++ glibc-2.35/sysdeps/unix/sysv/linux/Makefile
+@@ -117,7 +117,7 @@
+ 
+ tests += tst-clone tst-clone2 tst-clone3 tst-fanotify tst-personality \
+ 	 tst-quota tst-sync_file_range tst-sysconf-iov_max tst-ttyname \
+-	 test-errno-linux tst-memfd_create tst-mlock2 tst-pkey \
++	 tst-memfd_create tst-mlock2 tst-pkey \
+ 	 tst-rlimit-infinity tst-ofdlocks tst-gettid tst-gettid-kill \
+ 	 tst-tgkill tst-sysvsem-linux tst-sysvmsg-linux tst-sysvshm-linux \
+ 	 tst-timerfd tst-ppoll \
+@@ -309,9 +309,9 @@
+ 
+ sysdep_routines += sched_getcpu oldglob getcpu
+ 
+-tests += tst-affinity tst-affinity-pid
++
+ 
+-tests-static := tst-affinity-static
++tests-static := 
+ tests += $(tests-static)
+ 
+ CFLAGS-fork.c = $(libio-mtsafe)
