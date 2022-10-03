@@ -84,6 +84,19 @@ $ apt-ftparchive release . >Release
 
 ## Upgrade to glibc 2.31
 
+This time the upgrade cannot be done in a simple manner, without upgrading the system.
+
+1. Update all other packages first
+1. Prepare for upgrade to glibc 2.31
+1. Modify do-release-upgrade to remove check for upgradable packages
+1. Run do-release-upgrade
+
+TODO: patch out features and dependencies in order to be able to upgrade glibc without
+upgrading the system at this stage. We will rebuild glibc will all the features after
+upgrading anyway.
+
+### Preparing for upgrade to glibc 2.31
+
 /etc/apt/sources.list.d/bionic-glibc-2.31.list
 ```
 deb [trusted=yes] file:/var/lib/libc6-openvz6/bionic-glibc-2.31 ./
@@ -91,6 +104,26 @@ deb [trusted=yes] file:/var/lib/libc6-openvz6/bionic-glibc-2.31 ./
 
 ```
 $ sudo apt update
-$ sudo apt upgrade
 ```
+
+### Modify do-release-upgrade
+
+Change the line
+
+```
+for pkg in upgradable:
+```
+
+To
+
+``
+for pkg in []:
+```
+
+### Run do-release-upgrade
+
+```
+$ do-release-upgrade --allow-third-party
+```
+
 
