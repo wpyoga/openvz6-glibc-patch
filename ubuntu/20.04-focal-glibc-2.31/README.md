@@ -44,7 +44,6 @@ $ apt source --download-only glibc/focal
 $ dpkg-source -x glibc_2.31-0ubuntu9.2.dsc
 $ patch -p0 < glibc-2.31-kernel-2.6.32.diff
 $ patch -p0 < glibc-2.31-rlimit.diff
-$ patch -p0 < glibc-2.31-missing-files.diff
 $ patch -p0 < glibc-2.31-skip-tests.diff
 $ (cd glibc-2.31/sysdeps/unix/sysv/linux; autoconf -I ../../../.. -o configure configure.ac)
 $ (cd glibc-2.31/sysdeps/unix/sysv/linux/x86_64/x32; autoconf -I ../../../../../.. -o configure configure.ac)
@@ -66,7 +65,7 @@ Reference:
 ## Build the packages
 
 ```console
-( cd glibc-2.31 && dpkg-buildpackage -rfakeroot -b -d )
+( cd glibc-2.31 && dpkg-buildpackage -rfakeroot -b -d -Jauto )
 ```
 
 ## Stage the packages
@@ -74,7 +73,7 @@ Reference:
 ```
 $ sudo mkdir -p /var/lib/libc6-openvz6/focal-glibc-2.31
 $ sudo chown myuser: /var/lib/libc6-openvz6/focal-glibc-2.31
-$ mv -i *.deb *.udeb /var/lib/libc6-openvz6/focal-glibc-2.31
+$ mv -i *.deb *.udeb *.ddeb /var/lib/libc6-openvz6/focal-glibc-2.31
 $ cd /var/lib/libc6-openvz6/focal-glibc-2.31
 $ apt-ftparchive packages . >Packages
 $ apt-ftparchive release . >Release
