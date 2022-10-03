@@ -94,6 +94,9 @@ This time the upgrade cannot be done in a simple manner, without upgrading the s
 TODO: patch out features and dependencies in order to be able to upgrade glibc without
 upgrading the system at this stage. We will rebuild glibc will all the features after
 upgrading anyway.
+- One possible solution is to patch the dependency to libgcc-s1 and change it to libgcc1
+- Need to look at the other broken dependencies as well
+- We won't need to do this in the rebuild after upgrade.
 
 ### Preparing for upgrade to glibc 2.31
 
