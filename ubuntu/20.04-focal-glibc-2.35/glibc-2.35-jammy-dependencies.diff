@@ -1,0 +1,20 @@
+--- glibc-2.35.orig/debian/control.in/libc
++++ glibc-2.35/debian/control.in/libc
+@@ -8,7 +8,7 @@
+ Suggests: glibc-doc, debconf | debconf-2.0, locales [!hurd-i386]
+ Provides: libc6-sparcv9b [sparc sparc64], libc0.1-i686 [kfreebsd-i386], libc0.3-i686 [hurd-i386], libc6-i686 [i386], libc6-xen [i386], libc6-armel [armel], libc6-armhf [armhf], libc6-lse [arm64]
+ Conflicts: libc0.1-i686 [kfreebsd-i386], libc6-i686 [i386], libc6-lse [arm64]
+-Breaks: nscd (<< @GLIBC_VERSION@), locales (<< @GLIBC_VERSION@), locales-all (<< @GLIBC_VERSION@), hurd (<< 1:0.9.git20170910-1), libtirpc1 (<< 0.2.3), r-cran-later (<< 0.7.5+dfsg-2), nocache (<< 1.1-1~), iraf-fitsutil (<< 2018.07.06-4), wcc (<< 0.0.2+dfsg-3), openssh-server (<< 1:8.2p1-4), macs (<< 2.2.7.1-3~), openarena (<< 0.8.8+dfsg-4~), ioquake3 (<< 1.36+u20200211.f2c61c1~dfsg-2~), libgegl-0.4-0 (<< 0.4.18), busybox (<< 1.30.1-6), libgegl-0.4-0 (<< 0.4.18), fakeroot (<< 1.25.3-1.1ubuntu2~)
++Breaks: nscd (<< @GLIBC_VERSION@), locales (<< @GLIBC_VERSION@), locales-all (<< @GLIBC_VERSION@), hurd (<< 1:0.9.git20170910-1), libtirpc1 (<< 0.2.3), r-cran-later (<< 0.7.5+dfsg-2), nocache (<< 1.1-1~), iraf-fitsutil (<< 2018.07.06-4), wcc (<< 0.0.2+dfsg-3), openssh-server (<< 1:8.2p1-4), macs (<< 2.2.7.1-3~), openarena (<< 0.8.8+dfsg-4~), ioquake3 (<< 1.36+u20200211.f2c61c1~dfsg-2~), libgegl-0.4-0 (<< 0.4.18), busybox (<< 1.30.1-4), libgegl-0.4-0 (<< 0.4.18), fakeroot (<< 1.24-1)
+ Replaces: libc6-amd64 [amd64],
+           libc6-i386 [i386],
+           libc0.1-i686 [kfreebsd-i386],
+@@ -37,7 +37,7 @@
+ Section: libdevel
+ Priority: optional
+ Multi-Arch: same
+-Depends: @libc@ (= ${binary:Version}) <!stage1>, libc-dev-bin (= ${binary:Version}), ${misc:Depends}, linux-libc-dev [linux-any], kfreebsd-kernel-headers (>= 0.11) [kfreebsd-any], gnumach-dev [hurd-i386], hurd-dev (>= 20080607-3) [hurd-i386] | hurd-headers-dev [hurd-i386], ${libcrypt-dev:Depends}, ${rpcsvc-proto:Depends}, ${libtirpc-dev:Depends}, ${libnsl-dev:Depends}
++Depends: @libc@ (= ${binary:Version}) <!stage1>, libc-dev-bin (= ${binary:Version}), ${misc:Depends}, linux-libc-dev [linux-any], kfreebsd-kernel-headers (>= 0.11) [kfreebsd-any], gnumach-dev [hurd-i386], hurd-dev (>= 20080607-3) [hurd-i386] | hurd-headers-dev [hurd-i386], ${libcrypt-dev:Depends}
+ Replaces: hurd-dev (<< 20120408-3) [hurd-i386], kfreebsd-kernel-headers (<< 10.3~4) [kfreebsd-amd64 kfreebsd-i386]
+ Suggests: glibc-doc, manpages-dev
+ Provides: libc-dev, libc6-dev [alpha ia64 hurd-i386 kfreebsd-i386 kfreebsd-amd64], libc6-dev-armel [armel], libc6-dev-armhf [armhf]
