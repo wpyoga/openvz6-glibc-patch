@@ -1,5 +1,7 @@
 # Building and installing glibc 2.27 on Ubuntu 16.04 LTS Xenial
 
+This is done before upgrading to Bionic.
+
 ## Upgrade all packages
 
 First, upgrade all system packages.
