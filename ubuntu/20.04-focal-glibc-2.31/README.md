@@ -1,4 +1,4 @@
-# Building and installing glibc 2.35 on Ubuntu 20.04 LTS Focal
+# Building and installing glibc 2.31 on Ubuntu 20.04 LTS Focal
 
 This is done before upgrading to Focal.
 
@@ -46,40 +46,40 @@ $ apt source --download-only glibc/focal
 ## Extract and patch
 
 ```
-$ dpkg-source -x glibc_2.35-0ubuntu9.2.dsc
-$ patch -p0 < glibc-2.35-kernel-2.6.32.diff
-$ patch -p0 < glibc-2.35-rlimit.diff
-$ patch -p0 < glibc-2.35-skip-tests.diff
-$ (cd glibc-2.35/sysdeps/unix/sysv/linux; autoconf -I ../../../.. -o configure configure.ac)
-$ (cd glibc-2.35/sysdeps/unix/sysv/linux/x86_64/x32; autoconf -I ../../../../../.. -o configure configure.ac)
-$ sh glibc-2.35-patch-changelog-jammy.sh
+$ dpkg-source -x glibc_2.31-0ubuntu9.2.dsc
+$ patch -p0 < glibc-2.31-kernel-2.6.32.diff
+$ patch -p0 < glibc-2.31-rlimit.diff
+$ patch -p0 < glibc-2.31-skip-tests.diff
+$ (cd glibc-2.31/sysdeps/unix/sysv/linux; autoconf -I ../../../.. -o configure configure.ac)
+$ (cd glibc-2.31/sysdeps/unix/sysv/linux/x86_64/x32; autoconf -I ../../../../../.. -o configure configure.ac)
+$ sh glibc-2.31-patch-changelog-focal.sh
 ```
 
 The resulting binary packages will have the debian version prepended by "openvz6+ubuntu20.04+",
 indicating that this build is specifically for Ubuntu 20.04 on OpenVZ6. This also ensures
-that the interim glibc packages installed prior to upgrading to jammy will be upgraded
+that the interim glibc packages installed prior to upgrading to focal will be upgraded
 after the system upgrade.
 
 As long as the upstream version does not change (we stay on the same LTS release),
 our custom glibc packages will not be mistakenly overwritten by the official packages.
 
 Reference:
-- https://manpages.ubuntu.com/manpages/jammy/man7/deb-version.7.html
+- https://manpages.ubuntu.com/manpages/focal/man7/deb-version.7.html
 
 
 ## Build the packages
 
 ```console
-( cd glibc-2.35 && dpkg-buildpackage -rfakeroot -b -d -Jauto )
+( cd glibc-2.31 && dpkg-buildpackage -rfakeroot -b -d -Jauto )
 ```
 
 ## Stage the packages
 
 ```
-$ sudo mkdir -p /var/lib/libc6-openvz6/jammy-glibc-2.35
-$ sudo chown myuser: /var/lib/libc6-openvz6/jammy-glibc-2.35
-$ mv -i *.deb *.udeb *.ddeb /var/lib/libc6-openvz6/jammy-glibc-2.35
-$ cd /var/lib/libc6-openvz6/jammy-glibc-2.35
+$ sudo mkdir -p /var/lib/libc6-openvz6/focal-glibc-2.31
+$ sudo chown myuser: /var/lib/libc6-openvz6/focal-glibc-2.31
+$ mv -i *.deb *.udeb *.ddeb /var/lib/libc6-openvz6/focal-glibc-2.31
+$ cd /var/lib/libc6-openvz6/focal-glibc-2.31
 $ apt-ftparchive packages . >Packages
 $ apt-ftparchive release . >Release
 ```
