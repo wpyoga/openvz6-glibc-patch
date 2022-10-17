@@ -34,7 +34,7 @@ Upgrade all system packages. If some packages are held back, you may need to use
 ## Install debian build tools and glibc build dependencies
 
 ```console
-$ sudo apt install build-essential devscripts debhelper bison rdfind symlinks systemtap-sdt-dev libselinux1-dev gcc-multilib g++-multilib libgd-dev libaudit-dev libcap-dev
+$ sudo apt install build-essential devscripts debhelper bison rdfind symlinks systemtap-sdt-dev libselinux1-dev gcc-multilib g++-multilib libaudit-dev libcap-dev
 ```
 
 ## Download glibc focal sources
