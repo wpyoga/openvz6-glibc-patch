@@ -23,7 +23,7 @@ all the new features.
 
 ## LTS version upgrades
 
-Install update-manager-core and use do-release-upgrade. During the upgrade, accept new
+Install update-manager-core and use `do-release-upgrade`. During the upgrade, accept new
 config files unless you have customized it previously.
 
 After the upgrade, re-enable third-party repositories, including our local glibc repo.
