@@ -6,25 +6,30 @@ This is done before upgrading to Focal.
 
 First, upgrade all system packages.
 
-Some questions will be asked, just keep to the default answers and it's usually fine.
-
-## Add focal-backports and jammy sources repositories
+## Add focal-backports and focal sources repositories
 
 /etc/apt/sources.list.d/backports.list
 ```
-deb http://archive.ubuntu.com/ubuntu focal-backports main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu focal-backports main universe
 ```
 
-/etc/apt/sources.list.d/jammy-src.list
+/etc/apt/sources.list.d/focal-src.list
 ```
-deb-src http://archive.ubuntu.com/ubuntu jammy main
-deb-src http://archive.ubuntu.com/ubuntu jammy-updates main
-deb-src http://archive.ubuntu.com/ubuntu jammy-security main
+deb-src http://archive.ubuntu.com/ubuntu focal-updates main
+deb-src http://archive.ubuntu.com/ubuntu focal-security main
 ```
+
+No need to get the bionic distribution as newer glibc sources are already in focal-updates
+or focal-security.
 
 ```console
 $ sudo apt update
 ```
+
+## Upgrade all packages
+
+Upgrade all system packages. If some packages are held back, you may need to use
+`apt full-upgrade` to do this.
 
 ## Install debian build tools and glibc build dependencies
 
@@ -32,10 +37,10 @@ $ sudo apt update
 $ sudo apt install build-essential devscripts debhelper bison rdfind symlinks systemtap-sdt-dev libselinux1-dev gcc-multilib g++-multilib libgd-dev libaudit-dev libcap-dev
 ```
 
-## Download glibc jammy sources
+## Download glibc focal sources
 
 ```console
-$ apt source --download-only glibc/jammy
+$ apt source --download-only glibc/focal
 ```
 
 ## Extract and patch

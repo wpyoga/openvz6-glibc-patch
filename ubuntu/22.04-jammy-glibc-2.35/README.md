@@ -12,7 +12,7 @@ Some questions will be asked, just keep to the default answers and it's usually 
 
 /etc/apt/sources.list.d/backports.list
 ```
-deb http://archive.ubuntu.com/ubuntu jammy-backports main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu jammy-backports main universe
 ```
 
 /etc/apt/sources.list.d/jammy-src.list
@@ -25,6 +25,11 @@ deb-src http://archive.ubuntu.com/ubuntu jammy-security main
 ```console
 $ sudo apt update
 ```
+
+## Upgrade all packages
+
+Upgrade all system packages. If some packages are held back, you may need to use
+`apt full-upgrade` to do this.
 
 ## Install debian build tools and glibc build dependencies
 

@@ -9,23 +9,30 @@ variables, which are not supported by GCC 7.
 Also, Debian's glibc 2.31 packages does not include libcrypt.so.1, which is still needed
 while upgrading to Focal. So we need to patch the build rules and enable it.
 
-## Add focal-backports and focal sources repositories
+## Add bionic-backports and focal sources repositories
 
 /etc/apt/sources.list.d/backports.list
 ```
-deb http://archive.ubuntu.com/ubuntu focal-backports main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu bionic-backports main universe
 ```
 
 /etc/apt/sources.list.d/focal-src.list
 ```
-deb-src http://archive.ubuntu.com/ubuntu focal main
 deb-src http://archive.ubuntu.com/ubuntu focal-updates main
 deb-src http://archive.ubuntu.com/ubuntu focal-security main
 ```
 
+No need to get the bionic distribution as newer glibc sources are already in bionic-updates
+or bionic-security.
+
 ```console
 $ sudo apt update
 ```
+
+## Upgrade all packages
+
+Upgrade all system packages. If some packages are held back, you may need to use
+`apt full-upgrade` to do this.
 
 ## Install debian build tools and glibc build dependencies
 
