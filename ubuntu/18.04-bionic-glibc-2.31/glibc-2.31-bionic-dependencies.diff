@@ -1,0 +1,42 @@
+--- glibc-2.31.orig/debian/control.in/libc
++++ glibc-2.31/debian/control.in/libc
+@@ -3,7 +3,7 @@
+ Section: libs
+ Priority: optional
+ Multi-Arch: same
+-Depends: ${shlibs:Depends}, ${libgcc:Depends}, ${libcrypt:Depends}
++Depends: ${shlibs:Depends}, ${libgcc:Depends}
+ Recommends: libidn2-0 (>= 2.0.5~)
+ Suggests: glibc-doc, debconf | debconf-2.0, locales [!hurd-i386]
+ Provides: libc6-sparcv9b [sparc sparc64], libc0.1-i686 [kfreebsd-i386], libc0.3-i686 [hurd-i386], libc6-i686 [i386], libc6-xen [i386], libc6-armel [armel], libc6-armhf [armhf]
+@@ -36,7 +36,7 @@
+ Section: libdevel
+ Priority: optional
+ Multi-Arch: same
+-Depends: @libc@ (= ${binary:Version}) <!stage1>, libc-dev-bin (= ${binary:Version}), ${misc:Depends}, linux-libc-dev [linux-any], kfreebsd-kernel-headers (>= 0.11) [kfreebsd-any], gnumach-dev [hurd-i386], hurd-dev (>= 20080607-3) [hurd-i386] | hurd-headers-dev [hurd-i386], ${libcrypt-dev:Depends}
++Depends: @libc@ (= ${binary:Version}) <!stage1>, libc-dev-bin (= ${binary:Version}), ${misc:Depends}, linux-libc-dev [linux-any], kfreebsd-kernel-headers (>= 0.11) [kfreebsd-any], gnumach-dev [hurd-i386], hurd-dev (>= 20080607-3) [hurd-i386] | hurd-headers-dev [hurd-i386]
+ Replaces: hurd-dev (<< 20120408-3) [hurd-i386], kfreebsd-kernel-headers (<< 10.3~4) [kfreebsd-amd64 kfreebsd-i386]
+ Suggests: glibc-doc, manpages-dev
+ Provides: libc-dev, libc6-dev [alpha ia64 hurd-i386 kfreebsd-i386 kfreebsd-amd64], libc6-dev-armel [armel], libc6-dev-armhf [armhf]
+--- glibc-2.31.orig/debian/rules.d/debhelper.mk
++++ glibc-2.31/debian/rules.d/debhelper.mk
+@@ -174,7 +174,7 @@
+ 	# Generate common substvars files.
+ 	: > tmp.substvars
+ ifeq ($(filter stage1 stage2,$(DEB_BUILD_PROFILES)),)
+-	echo 'libgcc:Depends=libgcc-s1 [!hppa !m68k], libgcc-s2 [m68k], libgcc-s4 [hppa]' >> tmp.substvars
++	echo 'libgcc:Depends=libgcc1 [!hppa !m68k], libgcc-s2 [m68k], libgcc-s4 [hppa]' >> tmp.substvars
+ 	echo 'libcrypt:Depends=libcrypt1 (>= 1:4.4.10-10ubuntu4)' >> tmp.substvars
+ 	echo 'libcrypt-dev:Depends=libcrypt-dev' >> tmp.substvars
+ endif
+--- glibc-2.31.orig/debian/rules
++++ glibc-2.31/debian/rules
+@@ -89,7 +89,7 @@
+ slibdir=/lib/$(DEB_HOST_MULTIARCH)
+ libdir=/usr/lib/$(DEB_HOST_MULTIARCH)
+ mvec = no
+-crypt = no
++
+ 
+ 
+ BASE_CC = gcc

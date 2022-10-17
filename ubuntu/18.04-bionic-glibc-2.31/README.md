@@ -2,11 +2,12 @@
 
 This is done before upgrading to Focal.
 
-## Upgrade all packages
+Bionic comes with GCC 7. We disable compiling with CET and also remove the use of
+previously-declared static const variables when declaring subsequent static const
+variables, which are not supported by GCC 7.
 
-First, upgrade all system packages.
-
-Some questions will be asked, just keep to the default answers and it's usually fine.
+Also, Debian's glibc 2.31 packages does not include libcrypt.so.1, which is still needed
+while upgrading to Focal. So we need to patch the build rules and enable it.
 
 ## Add focal-backports and focal sources repositories
 
@@ -46,6 +47,7 @@ $ patch -p0 < glibc-2.31-kernel-2.6.32.diff
 $ patch -p0 < glibc-2.31-rlimit.diff
 $ patch -p0 < glibc-2.31-gcc-7.diff
 $ patch -p0 < glibc-2.31-skip-tests.diff
+$ patch -p0 < glibc-2.31-bionic-dependencies.diff
 $ (cd glibc-2.31/sysdeps/unix/sysv/linux; autoconf -I ../../../.. -o configure configure.ac)
 $ (cd glibc-2.31/sysdeps/unix/sysv/linux/x86_64/x32; autoconf -I ../../../../../.. -o configure configure.ac)
 $ sh glibc-2.31-patch-changelog-bionic.sh
