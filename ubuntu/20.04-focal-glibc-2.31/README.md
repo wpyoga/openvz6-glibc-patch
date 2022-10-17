@@ -63,6 +63,10 @@ after the system upgrade.
 As long as the upstream version does not change (we stay on the same LTS release),
 our custom glibc packages will not be mistakenly overwritten by the official packages.
 
+During upgrade to Ubuntu 20.04 LTS Focal using do-release-upgrade, our custom repository
+will be disabled. However, our custom versioning ensures that our glibc packages will not
+be overwritten by packages from official Focal repositories.
+
 Reference:
 - https://manpages.ubuntu.com/manpages/focal/man7/deb-version.7.html
 
