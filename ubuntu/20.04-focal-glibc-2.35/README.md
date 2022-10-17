@@ -15,10 +15,12 @@ deb http://archive.ubuntu.com/ubuntu focal-backports main universe
 
 /etc/apt/sources.list.d/jammy-src.list
 ```
-deb-src http://archive.ubuntu.com/ubuntu jammy main
 deb-src http://archive.ubuntu.com/ubuntu jammy-updates main
 deb-src http://archive.ubuntu.com/ubuntu jammy-security main
 ```
+
+No need to get the bionic distribution as newer glibc sources are already in bionic-updates
+or bionic-security.
 
 ```console
 $ sudo apt update
