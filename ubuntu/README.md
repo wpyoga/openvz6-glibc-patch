@@ -8,8 +8,9 @@ In general, what we do is:
 1. Upgrade to the next release
 1. Build the same glibc again
 
-The first build is only there to facilitate the upgrade to the next release. After upgrading the system,
-we need to build the same glibc again with the newer toolchain in order to get all the new features.
+The first build is only there to facilitate the upgrade to the next release. After upgrading
+the system, we need to build the same glibc again with the newer toolchain in order to get
+all the new features.
 
 
 ## glibc versions that come with each Ubuntu LTS version
@@ -22,7 +23,16 @@ we need to build the same glibc again with the newer toolchain in order to get a
 
 ## LTS version upgrades
 
-Install update-manager-core and use do-release-upgrade.
+Install update-manager-core and use do-release-upgrade. During the upgrade, accept new
+config files unless you have customized it previously.
+
+After the upgrade, re-enable third-party repositories, including our local glibc repo.
+Then do an `apt update` and run `ubuntu-support-status --show-unsupported` to see which
+packages are no longer supported (no security updates).
+
+The unsupported packages are safe to remove, except for the following:
+- glibc-related packages
+- packages needed to build the next version of glibc
 
 
 ## Upgrade 16.04 Xenial to 18.04 Bionic
@@ -30,6 +40,11 @@ Install update-manager-core and use do-release-upgrade.
 1. Download, patch, build, and install glibc 2.27
 1. Upgrade the system to 18.04 Bionic
 1. Patch, build, and install glibc 2.27 using another set of patches
+
+After the system upgrade, these packages should be safe to remove:
+cpp-5 e2fsprogs-l10n finger gcc-4.8-base gcc-5 gcc-5-base gcc-6-base libasan2 libgcc-5-dev
+module-init-tools libisl15 liblua5.1-0 libmpx0 libustr-1.0-1
+debconf-utils lzma procinfo makedev
 
 
 ## Upgrade 18.04 Bionic to 20.04 Focal
