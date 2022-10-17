@@ -25,7 +25,7 @@
  sysdep_routines += sched_getcpu oldglob getcpu
  
 -tests += tst-affinity tst-affinity-pid
-+tests += 
++
  
 -tests-static := tst-affinity-static
 +tests-static := 
