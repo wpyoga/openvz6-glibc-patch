@@ -44,3 +44,21 @@ Index: glibc-2.31/debian/sysdeps/x32.mk
  
  # main library
  libc_mvec = yes
+Index: glibc-2.31/string/tst-memmove-overflow.c
+===================================================================
+--- glibc-2.31.orig/string/tst-memmove-overflow.c
++++ glibc-2.31/string/tst-memmove-overflow.c
+@@ -42,11 +42,11 @@
+ 
+ /* Size of the part of the allocation which is not shared, at the
+    start and the end of the overall allocation.  4 MiB.  */
+-static const size_t unshared_size = 4U << 20;
++static const size_t unshared_size = 4U << 20; // copied below for gcc 7
+ 
+ /* The allocation is 2 GiB plus 8 MiB.  This should work with all page
+    sizes that occur in practice.  */
+-static const size_t allocation_size = (2U << 30) + 2 * unshared_size;
++static const size_t allocation_size = (2U << 30) + 2 * (4U << 20);
+ 
+ /* Compute the expected byte at the given index.  This is used to
+    produce a non-repeating pattern.  */
