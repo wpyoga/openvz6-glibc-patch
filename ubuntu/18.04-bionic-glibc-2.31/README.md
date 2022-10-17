@@ -22,8 +22,8 @@ deb-src http://archive.ubuntu.com/ubuntu focal-updates main
 deb-src http://archive.ubuntu.com/ubuntu focal-security main
 ```
 
-No need to get the bionic distribution as newer glibc sources are already in bionic-updates
-or bionic-security.
+No need to get the focal distribution as newer glibc sources are already in focal-updates
+or focal-security.
 
 ```console
 $ sudo apt update

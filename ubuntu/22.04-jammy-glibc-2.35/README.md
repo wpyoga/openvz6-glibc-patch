@@ -13,10 +13,12 @@ deb http://archive.ubuntu.com/ubuntu jammy-backports main universe
 
 /etc/apt/sources.list.d/jammy-src.list
 ```
-deb-src http://archive.ubuntu.com/ubuntu jammy main
 deb-src http://archive.ubuntu.com/ubuntu jammy-updates main
 deb-src http://archive.ubuntu.com/ubuntu jammy-security main
 ```
+
+No need to get the jammy distribution as newer glibc sources are already in jammy-updates
+or jammy-security.
 
 ```console
 $ sudo apt update
