@@ -82,9 +82,9 @@ $ apt-ftparchive release . >Release
 
 ## Upgrade to glibc 2.35
 
-/etc/apt/sources.list.d/jammy-glibc-2.35.list
+/etc/apt/sources.list.d/glibc.list
 ```
-deb [trusted=yes] file:/var/lib/libc6-openvz6 jammy-glibc-2.35/
+deb [trusted=yes] file:/var/lib/libc6-openvz6/jammy-glibc-2.35 ./
 ```
 
 ```

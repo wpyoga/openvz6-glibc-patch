@@ -86,15 +86,15 @@ $ apt-ftparchive release . >Release
 
 ## Upgrade to glibc 2.35
 
-/etc/apt/sources.list.d/focal-glibc-2.35.list
+/etc/apt/sources.list.d/glibc.list
 ```
-deb [trusted=yes] file:/var/lib/libc6-openvz6 focal-glibc-2.35/
+deb [trusted=yes] file:/var/lib/libc6-openvz6/focal-glibc-2.35 ./
 ```
-
-Use `full-upgrade` instead of `upgrade` because of some conflicting dependencies.
 
 ```
 $ sudo apt update
 $ sudo apt full-upgrade
 ```
+
+Use `full-upgrade` instead of `upgrade` because of some conflicting dependencies.
 

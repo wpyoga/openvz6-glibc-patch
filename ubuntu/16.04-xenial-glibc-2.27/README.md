@@ -85,7 +85,7 @@ $ apt-ftparchive release . >Release
 
 ## Upgrade to glibc 2.27
 
-/etc/apt/sources.list.d/xenial-glibc-2.27.list
+/etc/apt/sources.list.d/glibc.list
 ```
 deb [trusted=yes] file:/var/lib/libc6-openvz6/xenial-glibc-2.27 ./
 ```
