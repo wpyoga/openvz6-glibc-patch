@@ -2,11 +2,7 @@
 
 This is done before upgrading to Bionic.
 
-## Upgrade all packages
-
-First, upgrade all system packages.
-
-Some questions will be asked, just keep to the default answers and it's usually fine.
+Xenial comes with GCC 5, so we remove `--enable-static-pie`, which is not supported.
 
 ## Add xenial-backports and bionic sources repositories
 

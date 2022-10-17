@@ -2,11 +2,9 @@
 
 This is done before upgrading to Jammy.
 
-## Upgrade all packages
-
-First, upgrade all system packages.
-
-Some questions will be asked, just keep to the default answers and it's usually fine.
+We patch the package info in order to remove a conflict with fakeroot, and also avoid
+the missing dependencies: rpcsvc-proto, libtirpc-dev, and libnsl-dev. These libraries
+are only available after we upgrade to Jammy.
 
 ## Add focal-backports and jammy sources repositories
 

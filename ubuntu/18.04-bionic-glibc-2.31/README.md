@@ -6,8 +6,8 @@ Bionic comes with GCC 7. We disable compiling with CET and also remove the use o
 previously-declared static const variables when declaring subsequent static const
 variables, which are not supported by GCC 7.
 
-Also, Debian's glibc 2.31 packages does not include libcrypt.so.1, which is still needed
-while upgrading to Focal. So we need to patch the build rules and enable it.
+Also, Debian's glibc 2.31 build scripts does not build libcrypt.so.1 by default.
+We need this while upgrading to Focal, so we patch the build rules to enable it.
 
 ## Add bionic-backports and focal sources repositories
 

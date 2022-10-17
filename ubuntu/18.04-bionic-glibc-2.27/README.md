@@ -1,15 +1,9 @@
 # Building and installing glibc 2.27 on Ubuntu 18.04 LTS Bionic
 
 The instructions here are mostly identical to building glibc 2.27 on Xenial.
+
 The kernel support patches are still necessary, but we drop the GCC 5 support
-patches. Bionic comes with GCC 7, which supports Static PIE executables, which
-is a requirement for glibc 2.27.
-
-## Upgrade all packages
-
-First, upgrade all system packages.
-
-Some questions will be asked, just keep to the default answers and it's usually fine.
+patches because Bionic comes with GCC 7, which supports Static PIE executables.
 
 ## Add bionic-backports and bionic sources repositories
 

@@ -1,12 +1,8 @@
 # Building and installing glibc 2.35 on Ubuntu 22.04 LTS Jammy
 
-This is done before upgrading to Jammy.
+The instructions here are mostly identical to building glibc 2.35 on Focal.
 
-## Upgrade all packages
-
-First, upgrade all system packages.
-
-Some questions will be asked, just keep to the default answers and it's usually fine.
+Jammy comes with autoconf 2.71, so we need to patch the required version in aclocal.m4.
 
 ## Add jammy-backports and jammy sources repositories
 

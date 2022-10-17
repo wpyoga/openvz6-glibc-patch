@@ -1,10 +1,10 @@
 # Building and installing glibc 2.31 on Ubuntu 20.04 LTS Focal
 
-This is done before upgrading to Focal.
+The instructions here are mostly identical to building glibc 2.31 on Bionic.
 
-## Upgrade all packages
-
-First, upgrade all system packages.
+The kernel support patches are still necessary, but we drop the GCC 7 support
+patches because Bionic comes with GCC 7, which supports CET and recognizes
+previously-declared static const variables as constants.
 
 ## Add focal-backports and focal sources repositories
 
