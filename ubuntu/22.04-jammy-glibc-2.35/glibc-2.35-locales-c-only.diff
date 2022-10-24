@@ -1,0 +1,23 @@
+--- glibc-2.35.orig/debian/rules
++++ glibc-2.35/debian/rules
+@@ -141,3 +141,3 @@
+   endif
+-  DEB_INDEP_REGULAR_PACKAGES = locales
++  DEB_INDEP_REGULAR_PACKAGES = 
+   ifneq ($(filter noudeb,$(DEB_BUILD_PROFILES)),)
+@@ -149,3 +149,3 @@
+   ifeq ($(DEB_HOST_ARCH),$(DEB_BUILD_ARCH))
+-    DEB_ARCH_REGULAR_PACKAGES += locales-all
++    DEB_ARCH_REGULAR_PACKAGES += 
+   endif
+--- glibc-2.35.orig/localedata/Makefile
++++ glibc-2.35/localedata/Makefile
+@@ -427,7 +427,7 @@
+ $(objpfx)tst-mbswcs6.out: $(addprefix $(objpfx),$(CTYPE_FILES))
+ endif
+ 
+-include SUPPORTED
++SUPPORTED-LOCALES = C.UTF-8/UTF-8
+ 
+ INSTALL-SUPPORTED-LOCALE-ARCHIVE=$(addprefix install-archive-, $(SUPPORTED-LOCALES))
+ INSTALL-SUPPORTED-LOCALE-FILES=$(addprefix install-files-, $(SUPPORTED-LOCALES))

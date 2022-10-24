@@ -17,7 +17,7 @@ glibc (2.35-openvz6+ubuntu22.04+0ubuntu3.1) UNRELEASED; urgency=medium
 
   * Build on Jammy on OpenVZ 6
 
- -- William Poetra Yoga <william.poetra@gmail.com>  Tue, 4 Oct 2022 10:12:55 +0700
+ -- William Poetra Yoga <william.poetra@gmail.com>  Wed, 5 Oct 2022 11:35:02 +0700
 
 EOF
 

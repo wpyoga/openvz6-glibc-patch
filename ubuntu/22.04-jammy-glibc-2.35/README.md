@@ -4,12 +4,11 @@ The instructions here are mostly identical to building glibc 2.35 on Focal.
 
 Jammy comes with autoconf 2.71, so we need to patch the required version in aclocal.m4.
 
-## Add jammy-backports and jammy sources repositories
+We specify build profiles on the command line, because the environment variable is
+overridden by the new (Ubuntu) vendor hook. This is a bug that should be fixed in
+`dpkg-buildpackage`. This issue was not present on Focal.
 
-/etc/apt/sources.list.d/backports.list
-```
-deb http://archive.ubuntu.com/ubuntu jammy-backports main universe
-```
+## Add jammy sources repositories
 
 /etc/apt/sources.list.d/jammy-src.list
 ```
@@ -32,8 +31,11 @@ Upgrade all system packages. If some packages are held back, you may need to use
 ## Install debian build tools and glibc build dependencies
 
 ```console
-$ sudo apt install build-essential devscripts debhelper bison rdfind symlinks systemtap-sdt-dev libselinux1-dev gcc-multilib g++-multilib libaudit-dev libcap-dev
+$ sudo apt install build-essential devscripts debhelper autoconf bison rdfind symlinks systemtap-sdt-dev libselinux1-dev libaudit-dev libcap-dev
 ```
+
+If you want to build the multiarch packages, install `gcc-multilib` and `g++-multilib`
+in addition to the above packages.
 
 ## Download glibc jammy sources
 
@@ -51,6 +53,7 @@ $ patch -p0 < glibc-2.35-skip-tests.diff
 $ patch -p0 < glibc-2.35-aclocal-2.71.diff
 $ (cd glibc-2.35/sysdeps/unix/sysv/linux; autoconf -I ../../../.. -o configure configure.ac)
 $ (cd glibc-2.35/sysdeps/unix/sysv/linux/x86_64/x32; autoconf -I ../../../../../.. -o configure configure.ac)
+$ make --silent -C glibc-2.35 -f debian/rules debian/control
 $ sh glibc-2.35-patch-changelog-jammy.sh
 ```
 
@@ -73,15 +76,17 @@ Reference:
 ## Build the packages
 
 ```console
-( cd glibc-2.35 && dpkg-buildpackage -rfakeroot -b -d -Jauto )
+$ export DEB_BUILD_OPTIONS="noautodbgsym"
+$ ( cd glibc-2.35 && dpkg-buildpackage -rfakeroot -b -Jauto --build-profiles="nobiarch,noudeb" )
 ```
 
 ## Stage the packages
 
+Make sure the directory `/var/lib/libc6-openvz6` is writable, then
+
 ```
-$ sudo mkdir -p /var/lib/libc6-openvz6/jammy-glibc-2.35
-$ sudo chown myuser: /var/lib/libc6-openvz6/jammy-glibc-2.35
-$ mv -i *.deb *.ddeb /var/lib/libc6-openvz6/jammy-glibc-2.35
+$ mkdir -p /var/lib/libc6-openvz6/jammy-glibc-2.35
+$ mv -i *.deb /var/lib/libc6-openvz6/jammy-glibc-2.35
 $ cd /var/lib/libc6-openvz6/jammy-glibc-2.35
 $ apt-ftparchive packages . >Packages
 $ apt-ftparchive release . >Release
@@ -98,4 +103,12 @@ deb [trusted=yes] file:/var/lib/libc6-openvz6/jammy-glibc-2.35 ./
 $ sudo apt update
 $ sudo apt upgrade
 ```
+
+## Notes
+
+You can use the `build.sh` and `release.sh` convenience scripts to build the packages
+and set up the local repo.
+
+You can also remove the individual diff files and modify the default variables in
+those scripts as needed.
 

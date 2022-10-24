@@ -1,0 +1,12 @@
+--- glibc-2.35.orig/debian/rules
++++ glibc-2.35/debian/rules
+@@ -137,3 +137,3 @@
+ else
+-  DEB_ARCH_REGULAR_PACKAGES = $(libc) $(libc)-dev $(libc)-dbg libc-bin libc-dev-bin
++  DEB_ARCH_REGULAR_PACKAGES = $(libc) $(libc)-dev libc-bin libc-dev-bin
+   ifeq ($(filter stage2,$(DEB_BUILD_PROFILES)),)
+@@ -179,3 +179,3 @@
+ # Put the debug files from these packages in $(libc)-dbg
+-DEBUG_$(libc) = 1
++DEBUG_$(libc) = 
+ DEBUG_libc6-xen = 1

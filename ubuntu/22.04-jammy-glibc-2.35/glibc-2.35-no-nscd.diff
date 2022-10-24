@@ -1,0 +1,11 @@
+--- glibc-2.35.orig/debian/rules
++++ glibc-2.35/debian/rules
+@@ -184,7 +184,7 @@
+ 
+ ifeq ($(filter stage1,$(DEB_BUILD_PROFILES)),)
+   ifeq ($(threads),yes)
+-  DEB_ARCH_REGULAR_PACKAGES += nscd
++  DEB_ARCH_REGULAR_PACKAGES += 
+   endif
+ endif
+ 
