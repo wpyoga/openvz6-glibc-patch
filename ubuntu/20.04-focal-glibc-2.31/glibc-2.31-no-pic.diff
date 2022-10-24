@@ -1,0 +1,5 @@
+--- glibc-2.31.orig/debian/rules
++++ glibc-2.31/debian/rules
+@@ -138 +138 @@
+-  DEB_ARCH_REGULAR_PACKAGES = $(libc) $(libc)-dev $(libc)-pic libc-bin libc-dev-bin
++  DEB_ARCH_REGULAR_PACKAGES = $(libc) $(libc)-dev libc-bin libc-dev-bin

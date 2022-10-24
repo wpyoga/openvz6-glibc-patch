@@ -1,0 +1,13 @@
+--- glibc-2.31.orig/debian/rules
++++ glibc-2.31/debian/rules
+@@ -139 +139 @@
+-  DEB_INDEP_REGULAR_PACKAGES = locales
++  DEB_INDEP_REGULAR_PACKAGES = 
+@@ -147 +147 @@
+-    DEB_ARCH_REGULAR_PACKAGES += locales-all
++    DEB_ARCH_REGULAR_PACKAGES += 
+--- glibc-2.31.orig/localedata/Makefile
++++ glibc-2.31/localedata/Makefile
+@@ -402 +402 @@
+-include SUPPORTED
++SUPPORTED-LOCALES = C.UTF-8/UTF-8

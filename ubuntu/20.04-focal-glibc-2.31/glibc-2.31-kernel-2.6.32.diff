@@ -44,8 +44,6 @@
  if test -n "$minimum_kernel"; then
    changequote(,)
    user_version=$((`echo "$minimum_kernel.0.0.0" | sed 's/\([0-9]*\)\.\([0-9]*\)\.\([0-9]*\).*/\1 \* 65536 + \2 \* 256 + \3/'`))
-Index: glibc-2.31/sysdeps/unix/sysv/linux/x86_64/x32/configure.ac
-===================================================================
 --- glibc-2.31.orig/sysdeps/unix/sysv/linux/x86_64/x32/configure.ac
 +++ glibc-2.31/sysdeps/unix/sysv/linux/x86_64/x32/configure.ac
 @@ -1,6 +1,6 @@

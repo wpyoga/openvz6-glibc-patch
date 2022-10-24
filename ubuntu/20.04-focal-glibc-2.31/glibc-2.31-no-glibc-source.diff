@@ -1,0 +1,5 @@
+--- glibc-2.31.orig/debian/rules
++++ glibc-2.31/debian/rules
+@@ -139 +139 @@
+-  DEB_INDEP_REGULAR_PACKAGES = glibc-doc glibc-source locales
++  DEB_INDEP_REGULAR_PACKAGES = glibc-doc locales

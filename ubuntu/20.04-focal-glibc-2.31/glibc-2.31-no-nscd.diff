@@ -1,0 +1,7 @@
+--- glibc-2.31.orig/debian/rules
++++ glibc-2.31/debian/rules
+@@ -183,3 +183,3 @@
+   ifeq ($(threads),yes)
+-  DEB_ARCH_REGULAR_PACKAGES += nscd
++  DEB_ARCH_REGULAR_PACKAGES += 
+   endif

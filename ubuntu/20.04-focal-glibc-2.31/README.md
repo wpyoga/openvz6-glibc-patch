@@ -6,12 +6,18 @@ The kernel support patches are still necessary, but we drop the GCC 7 support
 patches because Bionic comes with GCC 7, which supports CET and recognizes
 previously-declared static const variables as constants.
 
-## Add focal-backports and focal sources repositories
+We disable building these:
+- profiling libraries
+- debug libraries
+- nscd
+- glibc-source & glibc-doc
+- locales
+- libc-dev-bin
 
-/etc/apt/sources.list.d/backports.list
-```
-deb http://archive.ubuntu.com/ubuntu focal-backports main universe
-```
+You can enable them by not applying specific patches as shown below. We also
+disable building multiarch libraries and udebs.
+
+## Add focal sources repositories
 
 /etc/apt/sources.list.d/focal-src.list
 ```
@@ -34,8 +40,11 @@ Upgrade all system packages. If some packages are held back, you may need to use
 ## Install debian build tools and glibc build dependencies
 
 ```console
-$ sudo apt install build-essential devscripts debhelper bison rdfind symlinks systemtap-sdt-dev libselinux1-dev gcc-multilib g++-multilib libaudit-dev libcap-dev
+$ sudo apt install build-essential devscripts debhelper autoconf bison rdfind symlinks systemtap-sdt-dev libselinux1-dev libaudit-dev libcap-dev
 ```
+
+If you want to build the multiarch packages, install `gcc-multilib` and `g++-multilib`
+in addition to the above packages.
 
 ## Download glibc focal sources
 
@@ -46,12 +55,20 @@ $ apt source --download-only glibc/focal
 ## Extract and patch
 
 ```
-$ dpkg-source -x glibc_2.31-0ubuntu9.2.dsc
+$ dpkg-source -x glibc_2.31-0ubuntu9.9.dsc
 $ patch -p0 < glibc-2.31-kernel-2.6.32.diff
 $ patch -p0 < glibc-2.31-rlimit.diff
 $ patch -p0 < glibc-2.31-skip-tests.diff
+$ patch -p0 < glibc-2.31-no-prof.diff
+$ patch -p0 < glibc-2.31-no-nscd.diff
+$ patch -p0 < glibc-2.31-no-glibc-source.diff
+$ patch -p0 < glibc-2.31-no-glibc-doc.diff
+$ patch -p0 < glibc-2.31-locales-c-only.diff
+$ patch -p0 < glibc-2.31-no-dbg.diff
+$ patch -p0 < glibc-2.31-no-pic.diff
 $ (cd glibc-2.31/sysdeps/unix/sysv/linux; autoconf -I ../../../.. -o configure configure.ac)
 $ (cd glibc-2.31/sysdeps/unix/sysv/linux/x86_64/x32; autoconf -I ../../../../../.. -o configure configure.ac)
+$ make --silent -C glibc-2.31 -f debian/rules debian/control
 $ sh glibc-2.31-patch-changelog-focal.sh
 ```
 
@@ -74,15 +91,18 @@ Reference:
 ## Build the packages
 
 ```console
-( cd glibc-2.31 && dpkg-buildpackage -rfakeroot -b -d -Jauto )
+$ export DEB_BUILD_OPTIONS="noautodbgsym"
+$ export DEB_BUILD_PROFILES="nobiarch noudeb"
+$ ( cd glibc-2.31 && dpkg-buildpackage -rfakeroot -b -Jauto )
 ```
 
 ## Stage the packages
 
+Make sure the directory `/var/lib/libc6-openvz6` is writable, then
+
 ```
-$ sudo mkdir -p /var/lib/libc6-openvz6/focal-glibc-2.31
-$ sudo chown myuser: /var/lib/libc6-openvz6/focal-glibc-2.31
-$ mv -i *.deb *.udeb *.ddeb /var/lib/libc6-openvz6/focal-glibc-2.31
+$ mkdir -p /var/lib/libc6-openvz6/focal-glibc-2.31
+$ mv -i *.deb /var/lib/libc6-openvz6/focal-glibc-2.31
 $ cd /var/lib/libc6-openvz6/focal-glibc-2.31
 $ apt-ftparchive packages . >Packages
 $ apt-ftparchive release . >Release
@@ -99,4 +119,13 @@ deb [trusted=yes] file:/var/lib/libc6-openvz6/focal-glibc-2.31 ./
 $ sudo apt update
 $ sudo apt upgrade
 ```
+
+
+## Notes
+
+You can use the `build.sh` and `release.sh` convenience scripts to build the packages
+and set up the local repo.
+
+You can also remove the individual diff files and modify the default variables in
+those scripts as needed.
 
