@@ -23,7 +23,7 @@ all the new features.
 
 ## LTS version upgrades
 
-Install update-manager-core and use `do-release-upgrade`. During the upgrade, accept new
+Install `update-manager-core` and use `do-release-upgrade`. During the upgrade, accept new
 config files unless you have customized it previously.
 
 After the upgrade, re-enable third-party repositories, including our local glibc repo.
@@ -45,10 +45,8 @@ that those packages may have been leftover from a previous install, and obsolete
 1. Upgrade the system to 18.04 Bionic
 1. Patch, build, and install glibc 2.27 using another set of patches
 
-After the system upgrade, these packages should be safe to remove:
-cpp-5 e2fsprogs-l10n finger gcc-4.8-base gcc-5 gcc-5-base gcc-6-base libasan2 libgcc-5-dev
-module-init-tools libisl15 liblua5.1-0 libmpx0 libustr-1.0-1
-debconf-utils lzma procinfo makedev
+After the system upgrade, you can remove the unsupported packages except for `dialog`,
+which is sometimes needed by `apt`.
 
 
 ## Upgrade 18.04 Bionic to 20.04 Focal
@@ -64,13 +62,16 @@ Ubuntu 20.04 Focal comes with glibc 2.31 .
 
 Upgrading from Focal to Jammy requires some preparation:
 
-1. Disable some systemd features by creating a file
-   `/etc/systemd/system/service.d/99-openvz.conf`
+1. Create the file `/etc/systemd/system/service.d/99-openvz.conf` to disable some
+   systemd features. Due to missing features in the OpenVZ 6 kernel, we need to disable
+   these features to prevent errors in some services, including systemd-logind,
+   which would affect ssh, sudo, and normal console login.
     ```
     [Service]
     ProtectSystem=false
     ProtectKernelModules=false
     ```
+
 1. Help usrmerge migration by moving `/lib/modules` to `/usr/lib/modules`
     ```
     $ sudo mv /lib/modules /usr/lib/modules
