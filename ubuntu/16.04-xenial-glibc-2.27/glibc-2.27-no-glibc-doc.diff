@@ -1,0 +1,5 @@
+--- glibc-2.27.orig/debian/rules
++++ glibc-2.27/debian/rules
+@@ -140 +140 @@
+-  DEB_INDEP_REGULAR_PACKAGES = glibc-doc locales
++  DEB_INDEP_REGULAR_PACKAGES = locales

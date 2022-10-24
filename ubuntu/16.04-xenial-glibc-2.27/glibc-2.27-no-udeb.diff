@@ -1,0 +1,5 @@
+--- glibc-2.27.orig/debian/rules
++++ glibc-2.27/debian/rules
+@@ -141 +141 @@
+-  DEB_UDEB_PACKAGES = $(libc)-udeb
++  DEB_UDEB_PACKAGES = 

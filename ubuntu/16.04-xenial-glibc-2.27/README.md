@@ -6,11 +6,6 @@ Xenial comes with GCC 5, so we remove `--enable-static-pie`, which is not suppor
 
 ## Add xenial-backports and bionic sources repositories
 
-/etc/apt/sources.list.d/backports.list
-```
-deb http://archive.ubuntu.com/ubuntu xenial-backports main universe
-```
-
 /etc/apt/sources.list.d/bionic-src.list
 ```
 deb-src http://archive.ubuntu.com/ubuntu bionic-updates main
@@ -32,8 +27,11 @@ Upgrade all system packages. If some packages are held back, you may need to use
 ## Install debian build tools and glibc build dependencies
 
 ```console
-$ sudo apt install build-essential devscripts debhelper/xenial-backports bison rdfind symlinks systemtap-sdt-dev libselinux1-dev gcc-multilib g++-multilib libaudit-dev libcap-dev
+$ sudo apt install build-essential devscripts debhelper autoconf bison rdfind symlinks systemtap-sdt-dev libselinux1-dev libaudit-dev libcap-dev
 ```
+
+If you want to build the multiarch packages, install `gcc-multilib` and `g++-multilib`
+in addition to the above packages.
 
 ## Download glibc bionic sources
 
@@ -50,8 +48,18 @@ $ patch -p0 < glibc-2.27-rlimit.diff
 $ patch -p0 < glibc-2.27-missing-files.diff
 $ patch -p0 < glibc-2.27-gcc-5.diff
 $ patch -p0 < glibc-2.27-skip-tests.diff
+$ patch -p0 < glibc-2.27-xenial-dependencies.diff
+$ patch -p0 < glibc-2.27-no-udeb.diff
+$ patch -p0 < glibc-2.27-no-nscd.diff
+$ patch -p0 < glibc-2.27-no-glibc-source.diff
+$ patch -p0 < glibc-2.27-no-glibc-doc.diff
+$ patch -p0 < glibc-2.27-locales-c-only.diff
+$ patch -p0 < glibc-2.27-no-dbg.diff
+$ patch -p0 < glibc-2.27-no-pic.diff
+$ patch -p0 < glibc-2.27-no-multiarch-support.diff
 $ (cd glibc-2.27/sysdeps/unix/sysv/linux; autoconf -I ../../../.. -o configure configure.ac)
 $ (cd glibc-2.27/sysdeps/unix/sysv/linux/x86_64/x32; autoconf -I ../../../../../.. -o configure configure.ac)
+$ make --silent -C glibc-2.27 -f debian/rules debian/control
 $ sh glibc-2.27-patch-changelog-xenial.sh
 ```
 
@@ -72,15 +80,16 @@ Reference:
 ## Build the packages
 
 ```console
-( cd glibc-2.27 && dpkg-buildpackage -rfakeroot -b -d -Jauto )
+( cd glibc-2.27 && dpkg-buildpackage -rfakeroot -b -Jauto )
 ```
 
 ## Stage the packages
 
+Make sure the directory `/var/lib/libc6-openvz6` is writable, then
+
 ```
-$ sudo mkdir -p /var/lib/libc6-openvz6/xenial-glibc-2.27
-$ sudo chown myuser: /var/lib/libc6-openvz6/xenial-glibc-2.27
-$ mv -i *.deb *.udeb /var/lib/libc6-openvz6/xenial-glibc-2.27
+$ mkdir -p /var/lib/libc6-openvz6/xenial-glibc-2.27
+$ mv -i *.deb /var/lib/libc6-openvz6/xenial-glibc-2.27
 $ cd /var/lib/libc6-openvz6/xenial-glibc-2.27
 $ apt-ftparchive packages . >Packages
 $ apt-ftparchive release . >Release
@@ -97,4 +106,12 @@ deb [trusted=yes] file:/var/lib/libc6-openvz6/xenial-glibc-2.27 ./
 $ sudo apt update
 $ sudo apt upgrade
 ```
+
+## Notes
+
+You can use the `build.sh` and `release.sh` convenience scripts to build the packages
+and set up the local repo.
+
+You can also remove the individual diff files and modify the default variables in
+those scripts as needed.
 
