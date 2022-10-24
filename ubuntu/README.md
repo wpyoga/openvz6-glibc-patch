@@ -57,6 +57,9 @@ Ubuntu 20.04 Focal comes with glibc 2.31 .
 1. Upgrade the system to 20.04 Focal
 1. Patch, build, and install glibc 2.31 using another set of patches
 
+After the system upgrade, add your main user account to the `systemd-journal` group,
+so that the systemd logs are available without using sudo.
+
 
 ## Upgrade 20.04 Focal to 22.04 Jammy
 
