@@ -4,7 +4,7 @@ This is done before upgrading to Bionic.
 
 Xenial comes with GCC 5, so we remove `--enable-static-pie`, which is not supported.
 
-## Add xenial-backports and bionic sources repositories
+## Add bionic sources repositories
 
 /etc/apt/sources.list.d/bionic-src.list
 ```
