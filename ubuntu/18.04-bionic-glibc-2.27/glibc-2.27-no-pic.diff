@@ -1,0 +1,5 @@
+--- glibc-2.27.orig/debian/rules
++++ glibc-2.27/debian/rules
+@@ -139 +139 @@
+-  DEB_ARCH_REGULAR_PACKAGES = $(libc) $(libc)-dev $(libc)-pic libc-bin libc-dev-bin multiarch-support
++  DEB_ARCH_REGULAR_PACKAGES = $(libc) $(libc)-dev libc-bin libc-dev-bin multiarch-support

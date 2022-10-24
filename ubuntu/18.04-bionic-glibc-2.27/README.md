@@ -7,11 +7,6 @@ patches because Bionic comes with GCC 7, which supports Static PIE executables.
 
 ## Add bionic-backports and bionic sources repositories
 
-/etc/apt/sources.list.d/backports.list
-```
-deb http://archive.ubuntu.com/ubuntu bionic-backports main universe
-```
-
 /etc/apt/sources.list.d/bionic-src.list
 ```
 deb-src http://archive.ubuntu.com/ubuntu bionic-updates main
@@ -33,8 +28,12 @@ Upgrade all system packages. If some packages are held back, you may need to use
 ## Install debian build tools and glibc build dependencies
 
 ```console
-$ sudo apt install build-essential devscripts debhelper bison rdfind symlinks systemtap-sdt-dev libselinux1-dev gcc-multilib g++-multilib libaudit-dev libcap-dev
+$ sudo apt install build-essential devscripts debhelper autoconf bison rdfind symlinks systemtap-sdt-dev libselinux1-dev libaudit-dev libcap-dev
 ```
+
+If you want to build the multiarch packages, install `gcc-multilib` and `g++-multilib`
+in addition to the above packages.
+
 
 ## Download glibc bionic sources
 
