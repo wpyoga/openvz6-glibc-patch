@@ -80,6 +80,8 @@ Ubuntu 22.04 Jammy comes with glibc 2.35 .
 1. Upgrade the system to 22.04 Jammy
 1. Patch, build, and install glibc 2.35 using another set of patches
 
+Reboot after installing glibc, because there seem to be errors.
+
 
 ## Notes
 
