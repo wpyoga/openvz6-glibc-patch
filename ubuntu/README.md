@@ -34,6 +34,10 @@ The unsupported packages are safe to remove, except for the following:
 - glibc-related packages
 - packages needed to build the next version of glibc
 
+Starting from Jammy, `ubuntu-support-status` is not available anymore. Instead, run
+`ubuntu-security-status --unavailable` to get a list of unavailable packages, which means
+that those packages may have been leftover from a previous install, and obsolete.
+
 
 ## Upgrade 16.04 Xenial to 18.04 Bionic
 
@@ -57,6 +61,21 @@ Ubuntu 20.04 Focal comes with glibc 2.31 .
 
 
 ## Upgrade 20.04 Focal to 22.04 Jammy
+
+Upgrading from Focal to Jammy requires some preparation:
+
+1. Disable some systemd features by creating a file
+   `/etc/systemd/system/service.d/99-openvz.conf`
+    ```
+    [Service]
+    ProtectSystem=false
+    ProtectKernelModules=false
+    ```
+1. Help usrmerge migration by moving `/lib/modules` to `/usr/lib/modules`
+    ```
+    $ sudo mv /lib/modules /usr/lib/modules
+    $ sudo ln -s /usr/lib/modules /lib/
+    ```
 
 Ubuntu 22.04 Jammy comes with glibc 2.35 .
 
