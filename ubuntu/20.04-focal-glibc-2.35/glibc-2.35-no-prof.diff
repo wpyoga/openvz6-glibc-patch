@@ -1,0 +1,11 @@
+--- glibc-2.35.orig/debian/rules
++++ glibc-2.35/debian/rules
+@@ -165,7 +165,7 @@
+ 
+ -include debian/sysdeps/$(DEB_HOST_ARCH_OS).mk
+ -include debian/sysdeps/$(DEB_HOST_ARCH).mk
+-include debian/sysdeps/prof.mk
++
+ 
+ ifneq ($(filter stage1,$(DEB_BUILD_PROFILES)),)
+ DEB_ARCH_REGULAR_PACKAGES += $(foreach p,$(DEB_ARCH_MULTILIB_PACKAGES), $(if $(findstring -dev,$(p)), $(p)))

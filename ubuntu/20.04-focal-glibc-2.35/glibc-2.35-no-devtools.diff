@@ -1,0 +1,29 @@
+--- glibc-2.35.orig/debian/rules.d/build.mk
++++ glibc-2.35/debian/rules.d/build.mk
+@@ -53,7 +53,7 @@
+ 	echo "SHELL := /bin/bash"                 >> $(DEB_BUILDDIR)/configparms
+ ifeq (,$(filter stage1 stage2,$(DEB_BUILD_PROFILES)))
+ 	if [ "$(curpass)" = "libc" ]; then \
+-	  echo "LIBGD = yes"                      >> $(DEB_BUILDDIR)/configparms; \
++	  echo "LIBGD = no"                      >> $(DEB_BUILDDIR)/configparms; \
+ 	else \
+ 	  echo "LIBGD = no"                       >> $(DEB_BUILDDIR)/configparms; \
+ 	fi
+--- glibc-2.35.orig/debian/rules
++++ glibc-2.35/debian/rules
+@@ -139,3 +139,3 @@
+   ifeq ($(filter stage2,$(DEB_BUILD_PROFILES)),)
+-    DEB_ARCH_REGULAR_PACKAGES += libc-devtools
++    DEB_ARCH_REGULAR_PACKAGES += 
+   endif
+--- glibc-2.35.orig/debian/control.in/main
++++ glibc-2.35/debian/control.in/main
+@@ -13,7 +13,7 @@
+  python3:native,
+  libidn2-0 (>= 2.0.5~) <!nocheck>,
+  libc-bin (>= @GLIBC_VERSION@) <cross>,
+- libgd-dev <!stage1> <!stage2>,
++ ,
+ Build-Depends-Indep: perl, po-debconf (>= 1.0)
+ Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+ XSBC-Original-Maintainer: GNU Libc Maintainers <debian-glibc@lists.debian.org>

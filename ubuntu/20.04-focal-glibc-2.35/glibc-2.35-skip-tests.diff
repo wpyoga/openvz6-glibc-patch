@@ -11,7 +11,7 @@
  # This test calls __res_context_send directly, which is not exported
 --- glibc-2.35.orig/sysdeps/unix/sysv/linux/Makefile
 +++ glibc-2.35/sysdeps/unix/sysv/linux/Makefile
-@@ -117,7 +117,7 @@
+@@ -117,12 +117,12 @@
  
  tests += tst-clone tst-clone2 tst-clone3 tst-fanotify tst-personality \
  	 tst-quota tst-sync_file_range tst-sysconf-iov_max tst-ttyname \
@@ -20,15 +20,88 @@
  	 tst-rlimit-infinity tst-ofdlocks tst-gettid tst-gettid-kill \
  	 tst-tgkill tst-sysvsem-linux tst-sysvmsg-linux tst-sysvshm-linux \
  	 tst-timerfd tst-ppoll \
+-	 tst-clock_adjtime tst-adjtimex tst-ntp_adjtime tst-ntp_gettime \
+-	 tst-ntp_gettimex tst-sigtimedwait tst-misalign-clone \
++	 tst-clock_adjtime tst-adjtimex tst-ntp_adjtime \
++	 tst-sigtimedwait tst-misalign-clone \
+   tst-prctl \
+   tst-scm_rights \
+   tst-epoll \
 @@ -309,9 +309,9 @@
  
  sysdep_routines += sched_getcpu oldglob getcpu
  
 -tests += tst-affinity tst-affinity-pid
-+
++tests += 
  
 -tests-static := tst-affinity-static
 +tests-static := 
  tests += $(tests-static)
  
  CFLAGS-fork.c = $(libio-mtsafe)
+@@ -359,7 +359,7 @@
+   tst-fallocate \
+   tst-fallocate64 \
+   tst-getcwd-smallbuff \
+-  tst-o_path-locks \
++  \
+ # tests
+ endif
+ 
+--- glibc-2.35.orig/nptl/Makefile
++++ glibc-2.35/nptl/Makefile
+@@ -292,7 +292,7 @@
+ 	tst-exec4 tst-exec5 \
+ 	tst-stack2 tst-stack3 tst-stack4 \
+ 	tst-pthread-attr-affinity \
+-	tst-pthread-attr-affinity-fail \
++	\
+ 	tst-dlsym1 \
+ 	tst-context1 \
+ 	tst-sched1 \
+@@ -303,9 +303,9 @@
+ 	tst-thread-exit-clobber tst-minstack-cancel tst-minstack-exit \
+ 	tst-minstack-throw \
+ 	tst-rwlock-pwn \
+-	tst-thread-affinity-pthread \
+-	tst-thread-affinity-pthread2 \
+-	tst-thread-affinity-sched \
++	\
++	\
++	\
+ 	tst-pthread-defaultattr-free \
+ 	tst-pthread-attr-sigmask \
+ 	tst-pthread-timedlock-lockloop \
+--- glibc-2.35.orig/elf/Makefile
++++ glibc-2.35/elf/Makefile
+@@ -378,7 +378,7 @@
+   tst-audit19b \
+   tst-audit20 \
+   tst-audit21 \
+-  tst-audit22 \
++  \
+   tst-audit23 \
+   tst-audit24a \
+   tst-audit24b \
+--- glibc-2.35.orig/io/Makefile
++++ glibc-2.35/io/Makefile
+@@ -70,7 +70,7 @@
+ 		   tst-posix_fallocate tst-posix_fallocate64 \
+ 		   tst-fts tst-fts-lfs tst-open-tmpfile \
+ 		   tst-copy_file_range tst-getcwd-abspath tst-lockf \
+-		   tst-ftw-lnk tst-lchmod \
++		   tst-ftw-lnk \
+ 		   tst-ftw-bz26353 tst-stat tst-stat-lfs \
+ 		   tst-utime \
+ 		   tst-utimes \
+--- glibc-2.35.orig/posix/Makefile
++++ glibc-2.35/posix/Makefile
+@@ -109,7 +109,7 @@
+ 		   tst-glob-tilde test-ssize-max tst-spawn4 bug-regex37 \
+ 		   bug-regex38 tst-regcomp-truncated tst-spawn-chdir \
+ 		   tst-wordexp-nocmd tst-execveat tst-spawn5 \
+-		   tst-sched_getaffinity tst-spawn6
++		   tst-sched_getaffinity
+ 
+ # Test for the glob symbol version that was replaced in glibc 2.27.
+ ifeq ($(have-GLIBC_2.26)$(build-shared),yesyes)
