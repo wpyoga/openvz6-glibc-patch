@@ -80,3 +80,18 @@ Ubuntu 22.04 Jammy comes with glibc 2.35 .
 1. Upgrade the system to 22.04 Jammy
 1. Patch, build, and install glibc 2.35 using another set of patches
 
+
+## Notes
+
+By default,
+
+- We don't build the packages `locales`, `locales-all`, `multiarch-support`, and `nscd`.
+  These packages are independent of the kernel, so we can just use the official packages.
+
+- We don't build the udeb package, since it's only used for the debian installer.
+
+- We don't build the debug (dbg, dbgsym) and profiling (prof) packages. Most users
+  don't need those anyway.
+
+- We don't build multi-arch packages.
+
