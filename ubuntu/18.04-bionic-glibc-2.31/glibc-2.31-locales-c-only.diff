@@ -1,0 +1,24 @@
+--- glibc-2.31.orig/debian/rules
++++ glibc-2.31/debian/rules
+@@ -139 +139 @@
+-  DEB_INDEP_REGULAR_PACKAGES = locales
++  DEB_INDEP_REGULAR_PACKAGES = 
+@@ -147 +147 @@
+-    DEB_ARCH_REGULAR_PACKAGES += locales-all
++    DEB_ARCH_REGULAR_PACKAGES += 
+--- glibc-2.31.orig/localedata/Makefile
++++ glibc-2.31/localedata/Makefile
+@@ -402 +402 @@
+-include SUPPORTED
++SUPPORTED-LOCALES = C.UTF-8/UTF-8
+--- glibc-2.31.orig/debian/control.in/libc
++++ glibc-2.31/debian/control.in/libc
+@@ -8,7 +8,7 @@
+ Suggests: glibc-doc, debconf | debconf-2.0, locales [!hurd-i386]
+ Provides: libc6-sparcv9b [sparc sparc64], libc0.1-i686 [kfreebsd-i386], libc0.3-i686 [hurd-i386], libc6-i686 [i386], libc6-xen [i386], libc6-armel [armel], libc6-armhf [armhf]
+ Conflicts: libc6-loongson2f [mipsel], libc0.1-i686 [kfreebsd-i386], libc6-i686 [i386], openrc (<< 0.27-2~), libc6-xen [i386]
+-Breaks: locales (<< @GLIBC_VERSION@), locales-all (<< @GLIBC_VERSION@), hurd (<< 1:0.9.git20170910-1), libtirpc1 (<< 0.2.3), r-cran-later (<< 0.7.5+dfsg-2), nocache (<< 1.1-1~), iraf-fitsutil (<< 2018.07.06-4), wcc (<< 0.0.2+dfsg-3), openssh-server (<< 1:8.2p1-4) [armel armhf hppa i386 mips mipsel mipsn32 mipsn32el mipsr6 mipsr6el mipsn32r6 mipsn32r6el powerpc]
++Breaks: hurd (<< 1:0.9.git20170910-1), libtirpc1 (<< 0.2.3), r-cran-later (<< 0.7.5+dfsg-2), nocache (<< 1.1-1~), iraf-fitsutil (<< 2018.07.06-4), wcc (<< 0.0.2+dfsg-3), openssh-server (<< 1:8.2p1-4) [armel armhf hppa i386 mips mipsel mipsn32 mipsn32el mipsr6 mipsr6el mipsn32r6 mipsn32r6el powerpc]
+ Replaces: libc6-amd64 [amd64],
+           libc6-i386 [i386],
+           libc0.1-i686 [kfreebsd-i386],

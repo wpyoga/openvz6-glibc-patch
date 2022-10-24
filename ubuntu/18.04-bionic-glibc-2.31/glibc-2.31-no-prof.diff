@@ -1,0 +1,7 @@
+--- glibc-2.31.orig/debian/rules
++++ glibc-2.31/debian/rules
+@@ -164,3 +164,3 @@
+ -include debian/sysdeps/$(DEB_HOST_ARCH).mk
+-include debian/sysdeps/prof.mk
++
+ 

@@ -1,3 +1,25 @@
+--- glibc-2.31.orig/debian/control.in/main
++++ glibc-2.31/debian/control.in/main
+@@ -1,8 +1,8 @@
+ Source: glibc
+ Section: libs
+ Priority: required
+-Build-Depends: gettext, dpkg (>= 1.18.7), dpkg-dev (>= 1.17.14), xz-utils, file, quilt,
+- autoconf, gawk, debhelper (>= 10), rdfind, symlinks, netbase, gperf, bison,
++Build-Depends: gettext, dpkg (>= 1.18.7), dpkg-dev (>= 1.17.14), xz-utils, file,
++ autoconf, gawk, debhelper (>= 10), rdfind, symlinks, netbase, bison,
+  linux-libc-dev (>= 3.9) [linux-any], systemtap-sdt-dev [linux-any],
+  libaudit-dev [linux-any], libcap-dev [linux-any], libselinux-dev [linux-any],
+  mig (>= 1.5-3) [hurd-i386], gnumach-dev (>= 2:1.8+git20181103-1~) [hurd-i386],
+@@ -10,7 +10,7 @@
+  hurd-dev (>= 1:0.9.git20191029) [hurd-i386] <!stage1> | libihash-dev [hurd-i386] <!stage1>,
+  kfreebsd-kernel-headers [kfreebsd-any],
+  binutils (>= 2.29),
+- g++-9, g++-9-multilib [amd64 armhf armel i386 kfreebsd-amd64 mips mipsel mipsn32 mipsn32el mips64 mips64el mipsr6 mipsr6el mipsn32r6 mipsn32r6el mips64r6 mips64r6el powerpc ppc64 s390x sparc sparc64 x32] <!nobiarch>,
++ g++-9-multilib [amd64 armhf armel i386 kfreebsd-amd64 mips mipsel mipsn32 mipsn32el mips64 mips64el mipsr6 mipsr6el mipsn32r6 mipsn32r6el mips64r6 mips64r6el powerpc ppc64 s390x sparc sparc64 x32] <!nobiarch>,
+  python3:native,
+  libidn2-0 (>= 2.0.5~) <!nocheck>,
+  libc-bin (>= @GLIBC_VERSION@) <cross>
 --- glibc-2.31.orig/debian/control.in/libc
 +++ glibc-2.31/debian/control.in/libc
 @@ -3,7 +3,7 @@
