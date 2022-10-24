@@ -34,7 +34,7 @@ The unsupported packages are safe to remove, except for the following:
 - glibc-related packages
 - packages needed to build the next version of glibc
 
-Starting from Jammy, `ubuntu-support-status` is not available anymore. Instead, run
+Starting from Focal, `ubuntu-support-status` is not available anymore. Instead, run
 `ubuntu-security-status --unavailable` to get a list of unavailable packages, which means
 that those packages may have been leftover from a previous install, and obsolete.
 
@@ -72,11 +72,7 @@ Upgrading from Focal to Jammy requires some preparation:
     ProtectKernelModules=false
     ```
 
-1. Help usrmerge migration by moving `/lib/modules` to `/usr/lib/modules`
-    ```
-    $ sudo mv /lib/modules /usr/lib/modules
-    $ sudo ln -s /usr/lib/modules /lib/
-    ```
+1. Reboot the system
 
 Ubuntu 22.04 Jammy comes with glibc 2.35 .
 
