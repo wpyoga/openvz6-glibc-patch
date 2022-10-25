@@ -1,0 +1,14 @@
+--- glibc-2.27.orig/debian/rules.d/debhelper.mk
++++ glibc-2.27/debian/rules.d/debhelper.mk
+@@ -25,9 +25,9 @@
+ 	else \
+ 		dh_installchangelogs -p$(curpass) debian/changelog.upstream ; \
+ 	fi
+-	dh_systemd_enable -p$(curpass)
++	
+ 	dh_installinit -p$(curpass)
+-	dh_systemd_start -p$(curpass)
++	
+ 	dh_installdocs -p$(curpass) 
+ 	dh_lintian -p $(curpass)
+ 	dh_link -p$(curpass)

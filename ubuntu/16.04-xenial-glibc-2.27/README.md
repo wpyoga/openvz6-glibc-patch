@@ -47,6 +47,7 @@ $ patch -p0 < glibc-2.27-kernel-2.6.32.diff
 $ patch -p0 < glibc-2.27-rlimit.diff
 $ patch -p0 < glibc-2.27-missing-files.diff
 $ patch -p0 < glibc-2.27-gcc-5.diff
+$ patch -p0 < glibc-2.27-debhelper-9.diff
 $ patch -p0 < glibc-2.27-skip-tests.diff
 $ patch -p0 < glibc-2.27-xenial-dependencies.diff
 $ patch -p0 < glibc-2.27-no-udeb.diff
