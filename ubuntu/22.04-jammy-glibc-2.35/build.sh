@@ -6,7 +6,7 @@ dpkg-source -x glibc_2.35-0ubuntu3.1.dsc
 
 patch -p0 < glibc-2.35-kernel-2.6.32.diff
 patch -p0 < glibc-2.35-rlimit.diff
-patch -p0 < glibc-2.35-aclocal.diff
+patch -p0 < glibc-2.35-aclocal-2.71.diff
 patch -p0 < glibc-2.35-skip-tests.diff
 patch -p0 < glibc-2.35-fchmodat.diff
 patch -p0 < glibc-2.35-tst-lchmod.diff
