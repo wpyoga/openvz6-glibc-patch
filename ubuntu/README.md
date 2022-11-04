@@ -75,7 +75,8 @@ Upgrading from Focal to Jammy requires some preparation:
     ProtectKernelModules=false
     ```
 
-1. Reboot the system
+1. Reboot the system to apply the overrides. In particular, this enables /usr merge,
+   otherwise there will be some mounts in `/lib/modules` that causes /usr merge to fail.
 
 Ubuntu 22.04 Jammy comes with glibc 2.35 .
 
